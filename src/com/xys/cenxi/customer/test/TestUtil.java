@@ -2,10 +2,6 @@ package com.xys.cenxi.customer.test;
 
 import java.math.BigDecimal;
 
-import org.nutz.ioc.val.SysPropValue;
-
-import com.xys.cenxi.customer.util.Util;
-
 public class TestUtil {
 
 	/**
