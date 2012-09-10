@@ -1,5 +1,7 @@
 package com.xys.cenxi.customer.pojo;
 
+import java.io.Serializable;
+
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
@@ -9,7 +11,12 @@ import org.nutz.dao.entity.annotation.Table;
  *
  */
 @Table("t_debigCnd")
-public class DebitCnd {
+public class DebitCnd implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3229031590277292121L;
+
 	@Name
 	private String rowID;
 	

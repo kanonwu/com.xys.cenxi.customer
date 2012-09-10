@@ -38,6 +38,13 @@ public class CustomerService {
 		return dao.insert(customer);
 	}
 	
+	public void add(List<Customer> cus){
+		Dao dao = DataSourceManager.getDao();
+		for(Customer c : cus){
+			dao.insert(c);
+		}
+	}
+	
 	public void updateCustomer(Customer customer){
 		customer.setModifyTime(new Date());
 		Dao dao = DataSourceManager.getDao();
@@ -81,6 +88,9 @@ public class CustomerService {
 		if(!Util.isEmpty(key.address)){
 			cri.where().andLike("address", key.address);
 		}
+		
+		cri.getOrderBy().asc("archivesID");
+		
 
 		if(key.pagerInfo != null){
 			result = dao.query(Customer.class, cri, key.pagerInfo);
@@ -90,5 +100,10 @@ public class CustomerService {
 		}
 		
 		return result;
+	}
+	
+	public List<Customer> getAllCustomer(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(Customer.class, null);
 	}
 }

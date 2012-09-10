@@ -33,6 +33,13 @@ public class FarmMachineService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<FarmMachine> fm){
+		Dao dao = DataSourceManager.getDao();
+		for(FarmMachine  f : fm){
+			dao.insert(f);
+		}
+	}
+	
 	public void delete(FarmMachine fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -58,6 +65,11 @@ public class FarmMachineService {
 	public List<FarmMachine> getForestry(String cusomerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(FarmMachine.class, Cnd.where("ownerID", "=", cusomerID));
+	}
+	
+	public List<FarmMachine> getAllFarmMachine(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(FarmMachine.class, null);
 	}
 
 }

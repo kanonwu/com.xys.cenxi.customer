@@ -35,6 +35,13 @@ public class CredidtService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<Credidt> cr){
+		Dao dao = DataSourceManager.getDao();
+		for(Credidt c : cr){
+			dao.insert(c);
+		}
+	}
+	
 	public void delete(Credidt fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -52,8 +59,13 @@ public class CredidtService {
 		dao.update(fa);
 	}
 	
+	public List<Credidt> getAllCredidt(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(Credidt.class, null);
+	}
+	
 	/**
-	 * 根据农户rowID查询其他重要信息
+	 * 鏍规嵁鍐滄埛rowID鏌ヨ鍏朵粬閲嶈淇℃伅
 	 * @param cusomerID
 	 * @return
 	 */
@@ -67,12 +79,24 @@ public class CredidtService {
 		return dao.fetch(DebitCnd.class, Cnd.where("ownerID", "=", customerID));
 	}
 	
+	public List<DebitCnd> getAllDeitCnd(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(DebitCnd.class, null);
+	}
+	
 	public DebitCnd add(DebitCnd debit){
 		if(debit.getRowID() == null){
 			debit.setRowID(OrderGenerator.newOrder());
 		}
 		Dao dao = DataSourceManager.getDao();
 		return dao.insert(debit);
+	}
+	
+	public void addDebitCnd(List<DebitCnd> deb){
+		Dao dao = DataSourceManager.getDao();
+		for(DebitCnd d : deb){
+			dao.insert(d);
+		}
 	}
 	
 	public void update(DebitCnd debit){

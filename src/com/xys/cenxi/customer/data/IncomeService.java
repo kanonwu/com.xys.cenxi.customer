@@ -36,6 +36,12 @@ public class IncomeService {
 		return dao.insert(fa);
 	}
 	
+	public void addFarmIncome(List<FarmIncome> income){
+		for(FarmIncome in : income){
+			add(in);
+		}
+	}
+	
 	public void delete(FarmIncome fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -63,9 +69,19 @@ public class IncomeService {
 		return dao.query(FarmIncome.class, Cnd.where("ownerID", "=", customerID));
 	}
 	
+	public List<FarmIncome> getAllFarmIncome(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(FarmIncome.class, null);
+	}
+	
 	public OtherIncome getOtherIncome(String customerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.fetch(OtherIncome.class, Cnd.where("ownerID", "=", customerID));
+	}
+	
+	public List<OtherIncome> getAllOtherIncome(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(OtherIncome.class, null);
 	}
 	
 	public BigDecimal getFamilyTotalIncome(String customerID){
@@ -96,6 +112,11 @@ public class IncomeService {
 	public FamilyOutput getFamilyOutput(String customerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.fetch(FamilyOutput.class, Cnd.where("ownerID", "=", customerID));
+	}
+	
+	public List<FamilyOutput> getAllFamilyOutput(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(FamilyOutput.class, null);
 	}
 
 	public BigDecimal getFamilyNetIncome(String customerID){
@@ -136,12 +157,24 @@ public class IncomeService {
 		return dao.insert(income);
 	}
 	
+	public void addOtherIncome(List<OtherIncome> ois){
+		for(OtherIncome oi : ois){
+			add(oi);
+		}
+	}
+	
 	public FamilyOutput add(FamilyOutput output){
 		Dao dao = DataSourceManager.getDao();
 		if(output.getRowID() == null){
 			output.setRowID(OrderGenerator.newOrder());
 		}
 		return dao.insert(output);
+	}
+	
+	public void addFamilyOutput(List<FamilyOutput> out){
+		for(FamilyOutput f : out){
+			add(f);
+		}
 	}
 	
 	public void update(FamilyOutput output){

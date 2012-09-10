@@ -33,6 +33,12 @@ public class VehicleService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<Vehicle> ve){
+		for(Vehicle v : ve){
+			add(v);
+		}
+	}
+	
 	public void delete(Vehicle fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -55,9 +61,14 @@ public class VehicleService {
 	 * @param cusomerID
 	 * @return
 	 */
-	public List<Vehicle> getForestry(String cusomerID){
+	public List<Vehicle> getVehicle(String cusomerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(Vehicle.class, Cnd.where("ownerID", "=", cusomerID));
+	}
+	
+	public List<Vehicle> getAllVehicle(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(Vehicle.class, null);
 	}
 
 }

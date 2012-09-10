@@ -34,6 +34,12 @@ public class HousingService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<Housing> houses){
+		for(Housing h : houses){
+			add(h);
+		}
+	}
+	
 	public void delete(Housing fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -61,4 +67,8 @@ public class HousingService {
 		return dao.query(Housing.class, Cnd.where("ownerID", "=", cusomerID));
 	}
 
+	public List<Housing> getAllHouse(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(Housing.class, null);
+	}
 }

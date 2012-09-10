@@ -1,5 +1,7 @@
 package com.xys.cenxi.customer.pojo;
 
+import java.io.Serializable;
+
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Name;
@@ -11,7 +13,9 @@ import org.nutz.dao.entity.annotation.Table;
  *
  */
 @Table("t_regional")
-public class Regional {
+public class Regional implements Serializable{
+
+	private static final long serialVersionUID = 7793909171753529729L;
 
 	@Name
 	private String rowID;

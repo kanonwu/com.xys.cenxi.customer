@@ -34,6 +34,13 @@ public class FamilyService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<Family> fa){
+		Dao dao = DataSourceManager.getDao();
+		for(Family f : fa){
+			dao.insert(f);
+		}
+	}
+	
 	public void delete(Family fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -61,4 +68,8 @@ public class FamilyService {
 		return dao.query(Family.class, Cnd.where("ownerID", "=", cusomerID));
 	}
 
+	public List<Family> getAllFamily(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(Family.class, null);
+	}
 }

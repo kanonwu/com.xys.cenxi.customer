@@ -7,7 +7,7 @@ public class RelationService {
 	private final String[] edus;
 	
 	private RelationService(){
-		edus = new String[]{"", "妻", "夫", "父", "母", "子", "女", "弟", "兄", "姐", "妹", "户主", "儿媳", "其他"};
+		edus = new String[]{"", "妻", "夫", "父", "母", "子", "女", "弟", "兄", "姐", "妹", "户主", "儿媳", "孙子", "孙女", "其他"};
 	}
 	
 	public static RelationService getInstant(){

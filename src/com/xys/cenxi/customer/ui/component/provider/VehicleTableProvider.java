@@ -33,7 +33,7 @@ public class VehicleTableProvider implements IStructuredContentProvider {
 		}
 		
 		Customer cus = (Customer) inputElement;
-		List<Vehicle> vehicles = VehicleService.getInstance().getForestry(cus.getRowID());
+		List<Vehicle> vehicles = VehicleService.getInstance().getVehicle(cus.getRowID());
 		return vehicles.toArray();
 	}
 

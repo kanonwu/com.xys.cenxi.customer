@@ -34,6 +34,13 @@ public class ForestryService {
 		return dao.insert(fa);
 	}
 	
+	public void add(List<ForestRights> fr){
+		Dao dao = DataSourceManager.getDao();
+		for(ForestRights f : fr){
+			dao.insert(f);
+		}
+	}
+	
 	public void delete(ForestRights fa){
 		Dao dao = DataSourceManager.getDao();
 		dao.delete(fa);
@@ -61,4 +68,8 @@ public class ForestryService {
 		return dao.query(ForestRights.class, Cnd.where("ownerID", "=", cusomerID));
 	}
 
+	public List<ForestRights> getAllForestRights(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(ForestRights.class, null);
+	}
 }
