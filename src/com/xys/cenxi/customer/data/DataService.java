@@ -66,8 +66,10 @@ public class DataService {
 			readVehicle(ois);
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.error("导入数据出错：", e);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			log.error("导入数据出错：", e);
 		}
 	}
 	
