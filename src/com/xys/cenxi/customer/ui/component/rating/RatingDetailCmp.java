@@ -1,30 +1,65 @@
 package com.xys.cenxi.customer.ui.component.rating;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.layout.TreeColumnLayout;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class RatingDetailCmp extends Composite {
-	private Text text;
-	private Text text_1;
+	private Text cpTotal;
+	private Text fpTotal;
+	private Text cpName;
+	private Text cpAdvise;
+	private Text fpName;
+	private Text fpAdvise;
+	private Combo cp1;
+	private Combo fp1;
+	private Combo fp3;
+	private Combo cp3;
+	private Combo cp2;
+	private Combo fp2;
+	private Combo cp4;
+	private Combo fp4;
+	private Combo cp5;
+	private Combo fp5;
+	private Combo cp6;
+	private Combo fp6;
+	private Combo fp7;
+	private Combo cp7;
+	private Combo cp8;
+	private Combo fp8;
+	private Combo cp9;
+	private Combo fp9;
+	private Combo cp10;
+	private Combo fp10;
+	private Combo cp11;
+	private Combo fp11;
+	private Combo cp12;
+	private Combo fp12;
+	private Combo cp13;
+	private Combo cp14;
+	private Combo fp14;
+	private Combo cp15;
+	private Combo fp15;
+	private Combo fp16;
+	private Combo cp17;
+	private Combo cp18;
+	private Combo fp18;
+	private DateTime fpDate;
+	private DateTime cpDate;
+	private Combo cpLevel;
+	private Combo fpLevel;
+	private Combo fp17;
+	private Combo cp16;
+	private Combo fp13;
 
 	/**
 	 * Create the composite.
@@ -43,40 +78,59 @@ public class RatingDetailCmp extends Composite {
 		composite.setLayout(new GridLayout(1, false));
 		
 		Group group = new Group(composite, SWT.NONE);
+		group.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
 		group.setText("\u6807\u51C6\u53CA\u8BC4\u5206");
-		group.setLayout(new GridLayout(11, false));
+		group.setLayout(new GridLayout(12, false));
 		GridData gd_group = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_group.heightHint = 1842;
+		gd_group.heightHint = 1756;
 		group.setLayoutData(gd_group);
 		
 		Label label = new Label(group, SWT.NONE);
-		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		label.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label.setAlignment(SWT.CENTER);
+		GridData gd_label = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_label.widthHint = 54;
+		label.setLayoutData(gd_label);
 		label.setText("\u5E8F\u53F7");
 		new Label(group, SWT.NONE);
 		
 		Label label_1 = new Label(group, SWT.NONE);
+		label_1.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_1.setAlignment(SWT.CENTER);
+		label_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		label_1.setText("\u9879\u76EE");
 		new Label(group, SWT.NONE);
 		
 		Label label_2 = new Label(group, SWT.NONE);
+		label_2.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_2.setAlignment(SWT.CENTER);
+		label_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		label_2.setText("\u6307\u6807\u540D\u79F0");
 		
 		Label label_3 = new Label(group, SWT.NONE);
+		label_3.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_3.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		label_3.setText("\u8BA1\u5206\u6807\u51C6");
 		
 		Label label_4 = new Label(group, SWT.NONE);
+		label_4.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_4.setAlignment(SWT.CENTER);
+		label_4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		label_4.setText("\u5206\u503C");
+		new Label(group, SWT.NONE);
 		
 		Label label_5 = new Label(group, SWT.NONE);
+		label_5.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
 		label_5.setAlignment(SWT.CENTER);
-		GridData gd_label_5 = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
+		GridData gd_label_5 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_label_5.widthHint = 45;
 		label_5.setLayoutData(gd_label_5);
 		label_5.setText("\u521D\u8BC4");
 		
 		Label label_6 = new Label(group, SWT.NONE);
+		label_6.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
 		label_6.setAlignment(SWT.CENTER);
-		GridData gd_label_6 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		GridData gd_label_6 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_label_6.widthHint = 44;
 		label_6.setLayoutData(gd_label_6);
 		label_6.setText("\u590D\u8BC4");
@@ -84,9 +138,10 @@ public class RatingDetailCmp extends Composite {
 		new Label(group, SWT.NONE);
 		
 		Label label_13 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 11, 1));
+		label_13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 12, 1));
 		
 		Label label_7 = new Label(group, SWT.NONE);
+		label_7.setAlignment(SWT.CENTER);
 		label_7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		label_7.setText("1");
 		
@@ -106,14 +161,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_11 = new Label(group, SWT.NONE);
 		label_11.setText("3");
+		new Label(group, SWT.NONE);
 		
-		Combo combo = new Combo(group, SWT.READ_ONLY);
-		combo.setItems(new String[] {"3", "0"});
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		cp1 = new Combo(group, SWT.READ_ONLY);
+		cp1.setItems(new String[] {"3", "0"});
+		cp1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		
-		Combo combo_1 = new Combo(group, SWT.READ_ONLY);
-		combo_1.setItems(new String[] {"3", "0"});
-		combo_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		fp1 = new Combo(group, SWT.READ_ONLY);
+		fp1.setItems(new String[] {"3", "0"});
+		fp1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
@@ -126,15 +182,17 @@ public class RatingDetailCmp extends Composite {
 		label_12.setText("0");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_110 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_110.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(group, SWT.NONE);
 		
 		Label label_15 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_14 = new Label(group, SWT.NONE);
+		label_14.setAlignment(SWT.CENTER);
 		label_14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		label_14.setText("2");
 		
@@ -151,14 +209,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_19 = new Label(group, SWT.NONE);
 		label_19.setText("2");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_3 = new Combo(group, SWT.READ_ONLY);
-		combo_3.setItems(new String[] {"2", "3", "5"});
-		combo_3.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		cp2 = new Combo(group, SWT.READ_ONLY);
+		cp2.setItems(new String[] {"2", "3", "5"});
+		cp2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		
-		Combo combo_2 = new Combo(group, SWT.READ_ONLY);
-		combo_2.setItems(new String[] {"2", "3", "5"});
-		combo_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		fp2 = new Combo(group, SWT.READ_ONLY);
+		fp2.setItems(new String[] {"2", "3", "5"});
+		fp2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -169,12 +228,14 @@ public class RatingDetailCmp extends Composite {
 		label_21.setText("3");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_22 = new Label(group, SWT.NONE);
 		label_22.setText("31\u201445\u5C81");
 		
 		Label label_23 = new Label(group, SWT.NONE);
 		label_23.setText("5");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -185,6 +246,7 @@ public class RatingDetailCmp extends Composite {
 		label_25.setText("3");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_26 = new Label(group, SWT.NONE);
 		label_26.setText("50\u5C81\u4EE5\u4E0A");
@@ -193,14 +255,16 @@ public class RatingDetailCmp extends Composite {
 		label_27.setText("2");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_111 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_111.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_28 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_28.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_28.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_54 = new Label(group, SWT.NONE);
+		label_54.setAlignment(SWT.CENTER);
 		label_54.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_54.setText("3");
 		
@@ -213,14 +277,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_50 = new Label(group, SWT.NONE);
 		label_50.setText("4");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_4 = new Combo(group, SWT.READ_ONLY);
-		combo_4.setItems(new String[] {"4", "3", "2", "1"});
-		combo_4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp3 = new Combo(group, SWT.READ_ONLY);
+		cp3.setItems(new String[] {"4", "3", "2", "1"});
+		cp3.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_5 = new Combo(group, SWT.READ_ONLY);
-		combo_5.setItems(new String[] {"4", "3", "2", "1"});
-		combo_5.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp3 = new Combo(group, SWT.READ_ONLY);
+		fp3.setItems(new String[] {"4", "3", "2", "1"});
+		fp3.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -231,12 +296,14 @@ public class RatingDetailCmp extends Composite {
 		label_51.setText("3");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_47 = new Label(group, SWT.NONE);
 		label_47.setText("\u4E27\u5076");
 		
 		Label label_52 = new Label(group, SWT.NONE);
 		label_52.setText("2");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -247,14 +314,16 @@ public class RatingDetailCmp extends Composite {
 		label_53.setText("1");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_112 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_112.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_49 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_49.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_49.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_55 = new Label(group, SWT.NONE);
+		label_55.setAlignment(SWT.CENTER);
 		label_55.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		label_55.setText("4");
 		
@@ -267,14 +336,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_31 = new Label(group, SWT.NONE);
 		label_31.setText("3");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_6 = new Combo(group, SWT.READ_ONLY);
-		combo_6.setItems(new String[] {"3", "2", "0"});
-		combo_6.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		cp4 = new Combo(group, SWT.READ_ONLY);
+		cp4.setItems(new String[] {"3", "2", "0"});
+		cp4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		
-		Combo combo_7 = new Combo(group, SWT.READ_ONLY);
-		combo_7.setItems(new String[] {"3", "2", "0"});
-		combo_7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		fp4 = new Combo(group, SWT.READ_ONLY);
+		fp4.setItems(new String[] {"3", "2", "0"});
+		fp4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -283,6 +353,7 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_33 = new Label(group, SWT.NONE);
 		label_33.setText("2");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -301,14 +372,17 @@ public class RatingDetailCmp extends Composite {
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_113 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_113.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_36 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_36.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_36.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_56 = new Label(group, SWT.NONE);
+		label_56.setAlignment(SWT.CENTER);
 		label_56.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		label_56.setText("5");
 		
@@ -320,14 +394,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_41 = new Label(group, SWT.NONE);
 		label_41.setText("5");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_8 = new Combo(group, SWT.READ_ONLY);
-		combo_8.setItems(new String[] {"5", "2", "1"});
-		combo_8.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		cp5 = new Combo(group, SWT.READ_ONLY);
+		cp5.setItems(new String[] {"5", "2", "1"});
+		cp5.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		
-		Combo combo_9 = new Combo(group, SWT.READ_ONLY);
-		combo_9.setItems(new String[] {"5", "2", "1"});
-		combo_9.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		fp5 = new Combo(group, SWT.READ_ONLY);
+		fp5.setItems(new String[] {"5", "2", "1"});
+		fp5.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
@@ -340,12 +415,14 @@ public class RatingDetailCmp extends Composite {
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_40 = new Label(group, SWT.NONE);
 		label_40.setText("\u521D\u4E2D\u4EE5\u4E0B");
 		
 		Label label_42 = new Label(group, SWT.NONE);
 		label_42.setText("1");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -356,9 +433,10 @@ public class RatingDetailCmp extends Composite {
 		label_108.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_43 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_43.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_43.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_57 = new Label(group, SWT.NONE);
+		label_57.setAlignment(SWT.CENTER);
 		label_57.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		label_57.setText("6");
 		
@@ -375,14 +453,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_63 = new Label(group, SWT.NONE);
 		label_63.setText("7");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_10 = new Combo(group, SWT.READ_ONLY);
-		combo_10.setItems(new String[] {"7", "6", "5", "4", "3"});
-		combo_10.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		cp6 = new Combo(group, SWT.READ_ONLY);
+		cp6.setItems(new String[] {"7", "6", "5", "4", "3"});
+		cp6.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		
-		Combo combo_11 = new Combo(group, SWT.READ_ONLY);
-		combo_11.setItems(new String[] {"7", "6", "5", "4", "3"});
-		combo_11.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		fp6 = new Combo(group, SWT.READ_ONLY);
+		fp6.setItems(new String[] {"7", "6", "5", "4", "3"});
+		fp6.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -393,12 +472,14 @@ public class RatingDetailCmp extends Composite {
 		label_64.setText("6");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_61 = new Label(group, SWT.NONE);
 		label_61.setText("10\u4E07\u5143(\u542B)\u201415\u4E07\u5143");
 		
 		Label label_65 = new Label(group, SWT.NONE);
 		label_65.setText("5");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -409,6 +490,7 @@ public class RatingDetailCmp extends Composite {
 		label_66.setText("4");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_62 = new Label(group, SWT.NONE);
 		label_62.setText("5\u4E07\u5143\u4EE5\u4E0B");
@@ -417,15 +499,17 @@ public class RatingDetailCmp extends Composite {
 		label_67.setText("3");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_115 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_115.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_68 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_68.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_68.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_116 = new Label(group, SWT.NONE);
-		label_116.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 5));
+		label_116.setAlignment(SWT.CENTER);
+		label_116.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		label_116.setText("7");
 		
 		Label label_71 = new Label(group, SWT.NONE);
@@ -437,14 +521,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_77 = new Label(group, SWT.NONE);
 		label_77.setText("5");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_12 = new Combo(group, SWT.READ_ONLY);
-		combo_12.setItems(new String[] {"5", "4", "3", "2", "1"});
-		combo_12.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		cp7 = new Combo(group, SWT.READ_ONLY);
+		cp7.setItems(new String[] {"5", "4", "3", "2", "1"});
+		cp7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		
-		Combo combo_13 = new Combo(group, SWT.READ_ONLY);
-		combo_13.setItems(new String[] {"5", "4", "3", "2", "1"});
-		combo_13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		fp7 = new Combo(group, SWT.READ_ONLY);
+		fp7.setItems(new String[] {"5", "4", "3", "2", "1"});
+		fp7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -455,12 +540,14 @@ public class RatingDetailCmp extends Composite {
 		label_78.setText("4");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_74 = new Label(group, SWT.NONE);
 		label_74.setText("2 \u2014 5\u4E07\u5143(\u542B)\u4EE5\u5185");
 		
 		Label label_79 = new Label(group, SWT.NONE);
 		label_79.setText("3");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -471,6 +558,7 @@ public class RatingDetailCmp extends Composite {
 		label_80.setText("2");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_76 = new Label(group, SWT.NONE);
 		label_76.setText("10\u4E07\u5143\u4EE5\u4E0A");
@@ -479,16 +567,18 @@ public class RatingDetailCmp extends Composite {
 		label_81.setText("1");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_114 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_114.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_82 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_82.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1));
+		label_82.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 6, 1));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
 		Label label_117 = new Label(group, SWT.NONE);
+		label_117.setAlignment(SWT.CENTER);
 		label_117.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_117.setText("8");
 		
@@ -501,14 +591,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_87 = new Label(group, SWT.NONE);
 		label_87.setText("8");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_14 = new Combo(group, SWT.READ_ONLY);
-		combo_14.setItems(new String[] {"8", "7", "6", "5"});
-		combo_14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp8 = new Combo(group, SWT.READ_ONLY);
+		cp8.setItems(new String[] {"8", "7", "6", "5"});
+		cp8.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_15 = new Combo(group, SWT.READ_ONLY);
-		combo_15.setItems(new String[] {"8", "7", "6", "5"});
-		combo_15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp8 = new Combo(group, SWT.READ_ONLY);
+		fp8.setItems(new String[] {"8", "7", "6", "5"});
+		fp8.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -519,12 +610,14 @@ public class RatingDetailCmp extends Composite {
 		label_88.setText("7");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label lblNewLabel_3 = new Label(group, SWT.NONE);
 		lblNewLabel_3.setText("3\u4E07\u5143(\u542B) \u2014 5\u4E07\u5143");
 		
 		Label label_89 = new Label(group, SWT.NONE);
 		label_89.setText("6");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -535,17 +628,19 @@ public class RatingDetailCmp extends Composite {
 		label_90.setText("5");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_118 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_118.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_91 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_91.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1));
+		label_91.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 6, 1));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
 		Label label_119 = new Label(group, SWT.NONE);
-		label_119.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 4));
+		label_119.setAlignment(SWT.CENTER);
+		label_119.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_119.setText("9");
 		
 		Label label_92 = new Label(group, SWT.WRAP);
@@ -559,14 +654,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_97 = new Label(group, SWT.NONE);
 		label_97.setText("10");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_16 = new Combo(group, SWT.READ_ONLY);
-		combo_16.setItems(new String[] {"10", "8", "6", "5"});
-		combo_16.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp9 = new Combo(group, SWT.READ_ONLY);
+		cp9.setItems(new String[] {"10", "8", "6", "5"});
+		cp9.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_17 = new Combo(group, SWT.READ_ONLY);
-		combo_17.setItems(new String[] {"10", "8", "6", "5"});
-		combo_17.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp9 = new Combo(group, SWT.READ_ONLY);
+		fp9.setItems(new String[] {"10", "8", "6", "5"});
+		fp9.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -577,12 +673,14 @@ public class RatingDetailCmp extends Composite {
 		label_98.setText("8");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_95 = new Label(group, SWT.NONE);
 		label_95.setText("1\u4E07\u5143(\u542B) \u2014 2\u4E07\u5143");
 		
 		Label label_99 = new Label(group, SWT.NONE);
 		label_99.setText("6");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -593,17 +691,19 @@ public class RatingDetailCmp extends Composite {
 		label_100.setText("5");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_120 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_120.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_101 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_101.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1));
+		label_101.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 6, 1));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
 		Label label_121 = new Label(group, SWT.NONE);
-		label_121.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 5));
+		label_121.setAlignment(SWT.CENTER);
+		label_121.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		label_121.setText("10");
 		
 		Label label_102 = new Label(group, SWT.WRAP);
@@ -617,14 +717,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_122 = new Label(group, SWT.NONE);
 		label_122.setText("10");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_18 = new Combo(group, SWT.READ_ONLY);
-		combo_18.setItems(new String[] {"10", "8", "6", "3", "0"});
-		combo_18.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		cp10 = new Combo(group, SWT.READ_ONLY);
+		cp10.setItems(new String[] {"10", "8", "6", "3", "0"});
+		cp10.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		
-		Combo combo_19 = new Combo(group, SWT.READ_ONLY);
-		combo_19.setItems(new String[] {"10", "8", "6", "3", "0"});
-		combo_19.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
+		fp10 = new Combo(group, SWT.READ_ONLY);
+		fp10.setItems(new String[] {"10", "8", "6", "3", "0"});
+		fp10.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 5));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -635,12 +736,14 @@ public class RatingDetailCmp extends Composite {
 		label_123.setText("8");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_105 = new Label(group, SWT.NONE);
 		label_105.setText("30%(\u542B) \u2014 40%");
 		
 		Label label_124 = new Label(group, SWT.NONE);
 		label_124.setText("6");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -651,12 +754,14 @@ public class RatingDetailCmp extends Composite {
 		label_125.setText("3");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_107 = new Label(group, SWT.NONE);
 		label_107.setText("\u81EA\u6709\u8D44\u91D1\u4E3A0\u4E07\u5143");
 		
 		Label label_126 = new Label(group, SWT.NONE);
 		label_126.setText("0");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -667,10 +772,11 @@ public class RatingDetailCmp extends Composite {
 		label_130.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_127 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_127.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_127.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_159 = new Label(group, SWT.NONE);
-		label_159.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 4));
+		label_159.setAlignment(SWT.CENTER);
+		label_159.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_159.setText("11");
 		
 		Label label_129 = new Label(group, SWT.NONE);
@@ -686,14 +792,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_135 = new Label(group, SWT.NONE);
 		label_135.setText("10");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_20 = new Combo(group, SWT.READ_ONLY);
-		combo_20.setItems(new String[] {"10", "8", "6", "0"});
-		combo_20.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp11 = new Combo(group, SWT.READ_ONLY);
+		cp11.setItems(new String[] {"10", "8", "6", "0"});
+		cp11.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_21 = new Combo(group, SWT.READ_ONLY);
-		combo_21.setItems(new String[] {"10", "8", "6", "0"});
-		combo_21.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp11 = new Combo(group, SWT.READ_ONLY);
+		fp11.setItems(new String[] {"10", "8", "6", "0"});
+		fp11.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -704,12 +811,14 @@ public class RatingDetailCmp extends Composite {
 		label_136.setText("8");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_134 = new Label(group, SWT.NONE);
 		label_134.setText("\u54C1\u884C\u4E00\u822C\uFF0C\u80AF\u52B3\u52A8\uFF0C\u793E\u4F1A\u53CD\u6620\u5C1A\u53EF");
 		
 		Label label_137 = new Label(group, SWT.NONE);
 		label_137.setText("6");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -724,6 +833,7 @@ public class RatingDetailCmp extends Composite {
 		label_138.setText("0");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_160 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_160.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
@@ -732,10 +842,11 @@ public class RatingDetailCmp extends Composite {
 		label_139.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_140 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_140.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_140.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_162 = new Label(group, SWT.NONE);
-		label_162.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+		label_162.setAlignment(SWT.CENTER);
+		label_162.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		label_162.setText("12");
 		
 		Label label_141 = new Label(group, SWT.NONE);
@@ -751,14 +862,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_185 = new Label(group, SWT.NONE);
 		label_185.setText("4");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_22 = new Combo(group, SWT.READ_ONLY);
-		combo_22.setItems(new String[] {"4", "2"});
-		combo_22.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		cp12 = new Combo(group, SWT.READ_ONLY);
+		cp12.setItems(new String[] {"4", "2"});
+		cp12.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		
-		Combo combo_23 = new Combo(group, SWT.READ_ONLY);
-		combo_23.setItems(new String[] {"4", "2"});
-		combo_23.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		fp12 = new Combo(group, SWT.READ_ONLY);
+		fp12.setItems(new String[] {"4", "2"});
+		fp12.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -769,15 +881,17 @@ public class RatingDetailCmp extends Composite {
 		label_186.setText("0");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_161 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_161.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_144 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_144.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_144.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_163 = new Label(group, SWT.NONE);
-		label_163.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+		label_163.setAlignment(SWT.CENTER);
+		label_163.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		label_163.setText("13");
 		
 		Label label_145 = new Label(group, SWT.NONE);
@@ -789,14 +903,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_187 = new Label(group, SWT.NONE);
 		label_187.setText("3");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_24 = new Combo(group, SWT.READ_ONLY);
-		combo_24.setItems(new String[] {"3", "2"});
-		combo_24.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		cp13 = new Combo(group, SWT.READ_ONLY);
+		cp13.setItems(new String[] {"3", "2"});
+		cp13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		
-		Combo combo_25 = new Combo(group, SWT.READ_ONLY);
-		combo_25.setItems(new String[] {"3", "2"});
-		combo_25.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		fp13 = new Combo(group, SWT.READ_ONLY);
+		fp13.setItems(new String[] {"3", "2"});
+		fp13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -807,15 +922,17 @@ public class RatingDetailCmp extends Composite {
 		label_188.setText("2");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_164 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_164.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_147 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_147.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_147.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_165 = new Label(group, SWT.NONE);
-		label_165.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 4));
+		label_165.setAlignment(SWT.CENTER);
+		label_165.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_165.setText("14");
 		
 		Label label_148 = new Label(group, SWT.NONE);
@@ -827,14 +944,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_189 = new Label(group, SWT.NONE);
 		label_189.setText("10");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_26 = new Combo(group, SWT.READ_ONLY);
-		combo_26.setItems(new String[] {"10", "8", "6", "0"});
-		combo_26.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp14 = new Combo(group, SWT.READ_ONLY);
+		cp14.setItems(new String[] {"10", "8", "6", "0"});
+		cp14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_27 = new Combo(group, SWT.READ_ONLY);
-		combo_27.setItems(new String[] {"10", "8", "6", "0"});
-		combo_27.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp14 = new Combo(group, SWT.READ_ONLY);
+		fp14.setItems(new String[] {"10", "8", "6", "0"});
+		fp14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -845,12 +963,14 @@ public class RatingDetailCmp extends Composite {
 		label_190.setText("8");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label lblNewLabel_7 = new Label(group, SWT.NONE);
 		lblNewLabel_7.setText("\u6709\u4E0D\u826F\u8BB0\u5F55\uFF0C\u65E0\u6076\u610F\u4E0D\u826F\u8BB0\u5F55");
 		
 		Label label_191 = new Label(group, SWT.NONE);
 		label_191.setText("6");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -861,14 +981,16 @@ public class RatingDetailCmp extends Composite {
 		label_192.setText("0");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_166 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		
 		Label label_152 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_152.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_152.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_167 = new Label(group, SWT.NONE);
-		label_167.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 4));
+		label_167.setAlignment(SWT.CENTER);
+		label_167.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		label_167.setText("15");
 		
 		Label lblNewLabel_8 = new Label(group, SWT.NONE);
@@ -880,14 +1002,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_193 = new Label(group, SWT.NONE);
 		label_193.setText("8");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_28 = new Combo(group, SWT.READ_ONLY);
-		combo_28.setItems(new String[] {"8", "6", "4", "0"});
-		combo_28.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		cp15 = new Combo(group, SWT.READ_ONLY);
+		cp15.setItems(new String[] {"8", "6", "4", "0"});
+		cp15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		
-		Combo combo_29 = new Combo(group, SWT.READ_ONLY);
-		combo_29.setItems(new String[] {"8", "6", "4", "0"});
-		combo_29.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
+		fp15 = new Combo(group, SWT.READ_ONLY);
+		fp15.setItems(new String[] {"8", "6", "4", "0"});
+		fp15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 4));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -898,12 +1021,14 @@ public class RatingDetailCmp extends Composite {
 		label_194.setText("6");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label lblNewLabel_11 = new Label(group, SWT.NONE);
 		lblNewLabel_11.setText("\u793E\u4F1A\u53CD\u6620\u4FE1\u7528\u4E00\u822C");
 		
 		Label label_195 = new Label(group, SWT.NONE);
 		label_195.setText("4");
+		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -914,13 +1039,16 @@ public class RatingDetailCmp extends Composite {
 		label_196.setText("0");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_168 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		
 		Label label_153 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_153.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_153.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_169 = new Label(group, SWT.NONE);
+		label_169.setAlignment(SWT.CENTER);
+		label_169.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		label_169.setText("16");
 		
 		Label lblNewLabel_13 = new Label(group, SWT.NONE);
@@ -932,14 +1060,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_197 = new Label(group, SWT.NONE);
 		label_197.setText("3");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_30 = new Combo(group, SWT.READ_ONLY);
-		combo_30.setItems(new String[] {"3", "2"});
-		combo_30.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		cp16 = new Combo(group, SWT.READ_ONLY);
+		cp16.setItems(new String[] {"3", "2"});
+		cp16.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		
-		Combo combo_31 = new Combo(group, SWT.READ_ONLY);
-		combo_31.setItems(new String[] {"3", "2"});
-		combo_31.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		fp16 = new Combo(group, SWT.READ_ONLY);
+		fp16.setItems(new String[] {"3", "2"});
+		fp16.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
@@ -951,6 +1080,7 @@ public class RatingDetailCmp extends Composite {
 		label_198.setText("2");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_170 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_170.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -959,10 +1089,11 @@ public class RatingDetailCmp extends Composite {
 		label_171.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_155 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_155.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_155.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_174 = new Label(group, SWT.NONE);
-		label_174.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+		label_174.setAlignment(SWT.CENTER);
+		label_174.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		label_174.setText("17");
 		
 		Label lblNewLabel_16 = new Label(group, SWT.NONE);
@@ -978,14 +1109,15 @@ public class RatingDetailCmp extends Composite {
 		
 		Label label_199 = new Label(group, SWT.NONE);
 		label_199.setText("2");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_32 = new Combo(group, SWT.READ_ONLY);
-		combo_32.setItems(new String[] {"2", "1"});
-		combo_32.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		cp17 = new Combo(group, SWT.READ_ONLY);
+		cp17.setItems(new String[] {"2", "1"});
+		cp17.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		
-		Combo combo_33 = new Combo(group, SWT.READ_ONLY);
-		combo_33.setItems(new String[] {"2", "1"});
-		combo_33.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
+		fp17 = new Combo(group, SWT.READ_ONLY);
+		fp17.setItems(new String[] {"2", "1"});
+		fp17.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 2));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -996,6 +1128,7 @@ public class RatingDetailCmp extends Composite {
 		label_200.setText("1");
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
+		new Label(group, SWT.NONE);
 		
 		Label label_173 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_173.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -1004,7 +1137,7 @@ public class RatingDetailCmp extends Composite {
 		label_172.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_156 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_156.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_156.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_175 = new Label(group, SWT.NONE);
 		label_175.setText("18");
@@ -1017,16 +1150,16 @@ public class RatingDetailCmp extends Composite {
 		lblNewLabel_20.setText("\u8C03\u6574\u5206(\u662F\u5426\u662F\u4E00\u76F4\u652F\u6301\u6211\u4EEC\u519C\u5408\u94F6\u884C\u5404\u9879\u5DE5\u4F5C)");
 		
 		Label lblNewLabel_21 = new Label(group, SWT.NONE);
-		lblNewLabel_21.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblNewLabel_21.setText("\u00B13");
+		new Label(group, SWT.NONE);
 		
-		Combo combo_34 = new Combo(group, SWT.READ_ONLY);
-		combo_34.setItems(new String[] {"+3", "-3"});
-		combo_34.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		cp18 = new Combo(group, SWT.READ_ONLY);
+		cp18.setItems(new String[] {"+3", "-3"});
+		cp18.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
-		Combo combo_35 = new Combo(group, SWT.READ_ONLY);
-		combo_35.setItems(new String[] {"+3", "-3"});
-		combo_35.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		fp18 = new Combo(group, SWT.READ_ONLY);
+		fp18.setItems(new String[] {"+3", "-3"});
+		fp18.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
@@ -1037,7 +1170,7 @@ public class RatingDetailCmp extends Composite {
 		label_157.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Label label_158 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_158.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1));
+		label_158.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
 		
 		Label label_177 = new Label(group, SWT.NONE);
 		label_177.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
@@ -1052,68 +1185,183 @@ public class RatingDetailCmp extends Composite {
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
-		text = new Text(group, SWT.BORDER);
-		GridData gd_text = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_text.widthHint = 45;
-		text.setLayoutData(gd_text);
+		Label label_213 = new Label(group, SWT.SEPARATOR | SWT.VERTICAL);
+		GridData gd_label_213 = new GridData(SWT.RIGHT, SWT.FILL, false, false, 1, 1);
+		gd_label_213.heightHint = 30;
+		label_213.setLayoutData(gd_label_213);
 		
-		text_1 = new Text(group, SWT.BORDER);
-		GridData gd_text_1 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_text_1.widthHint = 45;
-		text_1.setLayoutData(gd_text_1);
+		cpTotal = new Text(group, SWT.BORDER);
+		GridData gd_cpTotal = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cpTotal.widthHint = 45;
+		cpTotal.setLayoutData(gd_cpTotal);
+		
+		fpTotal = new Text(group, SWT.BORDER);
+		GridData gd_fpTotal = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_fpTotal.widthHint = 45;
+		fpTotal.setLayoutData(gd_fpTotal);
 		new Label(group, SWT.NONE);
 		new Label(group, SWT.NONE);
 		
 		Label label_180 = new Label(group, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_180.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 11, 1));
+		label_180.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 12, 1));
 		
 		Composite composite_1 = new Composite(group, SWT.NONE);
-		composite_1.setLayout(new GridLayout(10, false));
-		GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 11, 1);
-		gd_composite_1.heightHint = 52;
+		composite_1.setLayout(new GridLayout(18, false));
+		GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 12, 1);
+		gd_composite_1.heightHint = 79;
 		composite_1.setLayoutData(gd_composite_1);
 		
 		Label label_179 = new Label(composite_1, SWT.NONE);
+		label_179.setAlignment(SWT.CENTER);
+		label_179.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		GridData gd_label_179 = new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1);
+		gd_label_179.widthHint = 159;
+		label_179.setLayoutData(gd_label_179);
 		label_179.setText("\u4FE1\u7528\u7B49\u7EA7");
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
-		new Label(composite_1, SWT.NONE);
+		
+		Label label_206 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_206.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 3));
 		
 		Label lblNewLabel_22 = new Label(composite_1, SWT.NONE);
+		lblNewLabel_22.setAlignment(SWT.CENTER);
+		lblNewLabel_22.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		GridData gd_lblNewLabel_22 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_lblNewLabel_22.widthHint = 73;
+		lblNewLabel_22.setLayoutData(gd_lblNewLabel_22);
 		lblNewLabel_22.setText("80(\u542B)\u4EE5\u4E0A");
 		
+		Label label_207 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_207.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 3));
+		
 		Label label_181 = new Label(composite_1, SWT.NONE);
+		label_181.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_181.setAlignment(SWT.CENTER);
+		GridData gd_label_181 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_label_181.widthHint = 81;
+		label_181.setLayoutData(gd_label_181);
 		label_181.setText("70\uFF08\u542B\uFF09-80\u5206");
 		
+		Label label_208 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_208.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 3));
+		
 		Label label_182 = new Label(composite_1, SWT.NONE);
+		label_182.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_182.setAlignment(SWT.CENTER);
+		GridData gd_label_182 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_label_182.widthHint = 88;
+		label_182.setLayoutData(gd_label_182);
 		label_182.setText("60\uFF08\u542B\uFF09-70\u5206");
 		
+		Label label_209 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_209.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 3));
+		
 		Label label_183 = new Label(composite_1, SWT.NONE);
+		label_183.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_183.setAlignment(SWT.CENTER);
 		label_183.setText("60\u5206\u4EE5\u4E0B");
 		
+		Label label_210 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_210.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 3));
+		
 		Label label_184 = new Label(composite_1, SWT.NONE);
+		label_184.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_184.setAlignment(SWT.CENTER);
+		label_184.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 3));
 		label_184.setText("\u5F97\u5206\u7B49\u7EA7");
 		
-		Label label_201 = new Label(composite_1, SWT.NONE);
-		label_201.setText("\u6807\u51C6");
+		Label label_211 = new Label(composite_1, SWT.SEPARATOR | SWT.VERTICAL);
+		label_211.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 3));
+		
+		cpLevel = new Combo(composite_1, SWT.READ_ONLY);
+		cpLevel.setItems(new String[] {"\u4F18\u79C0", "\u826F\u597D", "\u4E00\u822C", "\u8F83\u5DEE"});
+		cpLevel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		
+		fpLevel = new Combo(composite_1, SWT.READ_ONLY);
+		fpLevel.setItems(new String[] {"\u4F18\u79C0", "\u826F\u597D", "\u4E00\u822C", "\u8F83\u5DEE"});
+		fpLevel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 3));
+		
+		Label label_212 = new Label(composite_1, SWT.SEPARATOR | SWT.HORIZONTAL);
+		label_212.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1));
 		new Label(composite_1, SWT.NONE);
 		new Label(composite_1, SWT.NONE);
 		new Label(composite_1, SWT.NONE);
 		new Label(composite_1, SWT.NONE);
 		
+		Label label_201 = new Label(composite_1, SWT.NONE);
+		label_201.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_201.setAlignment(SWT.CENTER);
+		label_201.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 5, 1));
+		label_201.setText("\u6807\u51C6");
+		
 		Label label_202 = new Label(composite_1, SWT.NONE);
+		label_202.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_202.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		label_202.setText("\u4F18\u79C0");
 		
 		Label label_203 = new Label(composite_1, SWT.NONE);
+		label_203.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_203.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		label_203.setText("\u826F\u597D");
 		
 		Label label_204 = new Label(composite_1, SWT.NONE);
+		label_204.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_204.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		label_204.setText("\u4E00\u822C");
 		
 		Label label_205 = new Label(composite_1, SWT.NONE);
+		label_205.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		label_205.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		label_205.setText("\u8F83\u5DEE");
-		new Label(composite_1, SWT.NONE);
+		
+		Group group_1 = new Group(composite, SWT.NONE);
+		group_1.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
+		group_1.setLayout(new GridLayout(4, false));
+		GridData gd_group_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		gd_group_1.heightHint = 142;
+		group_1.setLayoutData(gd_group_1);
+		group_1.setText("\u8BC4\u7EA7\u610F\u89C1");
+		
+		Label label_214 = new Label(group_1, SWT.NONE);
+		label_214.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_214.setText("\u521D\u8BC4\u4EBA\uFF1A");
+		
+		cpName = new Text(group_1, SWT.BORDER);
+		GridData gd_cpName = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cpName.widthHint = 364;
+		cpName.setLayoutData(gd_cpName);
+		
+		Label label_216 = new Label(group_1, SWT.NONE);
+		label_216.setText("\u65E5\u671F\uFF1A");
+		
+		cpDate = new DateTime(group_1, SWT.BORDER | SWT.DROP_DOWN | SWT.LONG);
+		
+		Label label_215 = new Label(group_1, SWT.NONE);
+		label_215.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_215.setText("\u521D\u8BC4\u4EBA\u610F\u89C1\uFF1A");
+		
+		cpAdvise = new Text(group_1, SWT.BORDER);
+		GridData gd_cpAdvise = new GridData(SWT.FILL, SWT.CENTER, false, false, 3, 1);
+		gd_cpAdvise.widthHint = 631;
+		cpAdvise.setLayoutData(gd_cpAdvise);
+		
+		Label label_217 = new Label(group_1, SWT.NONE);
+		label_217.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_217.setText("\u590D\u8BC4\u4EBA\uFF1A");
+		
+		fpName = new Text(group_1, SWT.BORDER);
+		fpName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		
+		Label label_218 = new Label(group_1, SWT.NONE);
+		label_218.setText("\u65E5\u671F\uFF1A");
+		
+		fpDate = new DateTime(group_1, SWT.BORDER | SWT.DROP_DOWN | SWT.LONG);
+		
+		Label label_219 = new Label(group_1, SWT.NONE);
+		label_219.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_219.setText("\u590D\u8BC4\u4EBA\u610F\u89C1\uFF1A");
+		
+		fpAdvise = new Text(group_1, SWT.BORDER);
+		fpAdvise.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 3, 1));
 		scrolledComposite.setContent(composite);
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
