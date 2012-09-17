@@ -33,7 +33,7 @@ public class MachineTableProvider implements IStructuredContentProvider {
 		}
 		
 		Customer cus = (Customer) inputElement;
-		List<FarmMachine> machines = FarmMachineService.getInstance().getForestry(cus.getRowID());
+		List<FarmMachine> machines = FarmMachineService.getInstance().getFarmMachine(cus.getRowID());
 		return machines.toArray();
 	}
 

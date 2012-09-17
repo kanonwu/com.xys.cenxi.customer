@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
@@ -62,7 +63,7 @@ public class FarmMachineService {
 	 * @param cusomerID
 	 * @return
 	 */
-	public List<FarmMachine> getForestry(String cusomerID){
+	public List<FarmMachine> getFarmMachine(String cusomerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(FarmMachine.class, Cnd.where("ownerID", "=", cusomerID));
 	}
@@ -72,4 +73,15 @@ public class FarmMachineService {
 		return dao.query(FarmMachine.class, null);
 	}
 
+	public BigDecimal getTotalCapital(String customerID){
+		List<FarmMachine> machine = getFarmMachine(customerID);
+		float result = 0.0f;
+		for(FarmMachine m : machine){
+			if(m.getPrice() != null){
+				result += m.getPrice();
+			}
+		}
+		
+		return BigDecimal.valueOf(result);
+	}
 }

@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
@@ -69,6 +70,18 @@ public class VehicleService {
 	public List<Vehicle> getAllVehicle(){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(Vehicle.class, null);
+	}
+	
+	public BigDecimal getTotalCapital(String customerID){
+		List<Vehicle> veh = getVehicle(customerID);
+		float result = 0.0f;
+		for(Vehicle v : veh){
+			if(v.getPrice() != null){
+				result += v.getPrice();
+			}
+		}
+		
+		return BigDecimal.valueOf(result);
 	}
 
 }

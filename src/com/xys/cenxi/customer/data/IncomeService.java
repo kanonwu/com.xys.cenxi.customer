@@ -9,6 +9,8 @@ import org.nutz.dao.Dao;
 import com.xys.cenxi.customer.db.DataSourceManager;
 import com.xys.cenxi.customer.pojo.FamilyOutput;
 import com.xys.cenxi.customer.pojo.FarmIncome;
+import com.xys.cenxi.customer.pojo.ForestRights;
+import com.xys.cenxi.customer.pojo.Housing;
 import com.xys.cenxi.customer.pojo.OtherIncome;
 import com.xys.cenxi.customer.util.OrderGenerator;
 
@@ -180,5 +182,46 @@ public class IncomeService {
 	public void update(FamilyOutput output){
 		Dao dao = DataSourceManager.getDao();
 		dao.update(output);
+	}
+	
+	/**
+	 * 得到家庭总资产
+	 * @param customerID
+	 * @return
+	 */
+	public BigDecimal getTotalCapital(String customerID){
+		//总资产=房产+林权+车辆+农机
+		BigDecimal house = HousingService.getInstance().getTotalCapital(customerID);
+		BigDecimal forestry = ForestryService.getInstance().getTotalCapital(customerID);
+		BigDecimal vehicle = VehicleService.getInstance().getTotalCapital(customerID);
+		BigDecimal machine = FarmMachineService.getInstance().getTotalCapital(customerID);
+		
+		BigDecimal total = house.add(forestry).add(vehicle).add(machine);
+		
+		return total;
+	}
+	
+	/**
+	 * 得到家庭年度总支出
+	 * @param customerID
+	 * @return
+	 */
+	public BigDecimal getTotalOutput(String customerID){
+		FamilyOutput out = getFamilyOutput(customerID);
+		float result = 0.0f;
+		if(out == null){
+			return null;
+		}
+		if(out.getLiftOutput() != null){
+			result += out.getLiftOutput();
+		}
+		if(out.getOtherOutput() != null){
+			result += out.getOtherOutput();
+		}
+		if(out.getProductionOutput() != null){
+			result += out.getProductionOutput();
+		}
+		
+		return BigDecimal.valueOf(result);
 	}
 }

@@ -369,17 +369,7 @@ public class InOutMgrCmp extends Composite {
 			return;
 		}
 		
-		BigDecimal allOutput = BigDecimal.ZERO;
-		if(output.getProductionOutput() != null){
-			allOutput = allOutput.add(BigDecimal.valueOf(output.getProductionOutput()));
-		}
-		if(output.getLiftOutput() != null){
-			allOutput = allOutput.add(BigDecimal.valueOf(output.getLiftOutput()));
-		}
-		if(output.getOtherOutput() != null){
-			allOutput = allOutput.add(BigDecimal.valueOf(output.getOtherOutput()));
-		}
-		
+		BigDecimal allOutput = IncomeService.getInstance().getTotalOutput(customer.getRowID());
 		textAllOutput.setText(Util.toPlainString(allOutput));
 	}
 

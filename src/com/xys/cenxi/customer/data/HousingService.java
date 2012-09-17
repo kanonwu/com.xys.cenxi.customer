@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
@@ -70,5 +71,22 @@ public class HousingService {
 	public List<Housing> getAllHouse(){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(Housing.class, null);
+	}
+	
+	/**
+	 * 得到房产总价值
+	 * @param customerID
+	 * @return
+	 */
+	public BigDecimal getTotalCapital(String customerID){
+		List<Housing> houses = getHouse(customerID);
+		float total = 0.0f;
+		for(Housing h : houses){
+			if(h.getPrice() != null){
+				total += h.getPrice();
+			}
+		}
+		
+		return BigDecimal.valueOf(total);
 	}
 }

@@ -1,15 +1,22 @@
 package com.xys.cenxi.customer.ui.component.rating;
 
+import java.math.BigDecimal;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.SWT;
 import de.kupzog.ktable.KTable;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
+
+import com.xys.cenxi.customer.data.IncomeService;
+import com.xys.cenxi.customer.pojo.Customer;
+import com.xys.cenxi.customer.util.Util;
 
 public class BasicInfoCmp extends Composite {
 	private Text textName;
@@ -39,7 +46,7 @@ public class BasicInfoCmp extends Composite {
 		super(parent, style);
 		setLayout(new FillLayout(SWT.HORIZONTAL));
 		
-		Group group = new Group(this, SWT.NONE);
+		group = new Group(this, SWT.NONE);
 		group.setText("\u88AB\u8BC4\u519C\u6237\u57FA\u672C\u4FE1\u606F");
 		group.setLayout(new GridLayout(10, false));
 		
@@ -75,7 +82,7 @@ public class BasicInfoCmp extends Composite {
 		label_3.setText("\u662F\u5426\u793E\u5458\uFF1A");
 		
 		cpIsMember = new Combo(group, SWT.READ_ONLY);
-		cpIsMember.setItems(new String[] {"\u662F", "\u5426"});
+		cpIsMember.setItems(new String[] {"", "\u662F", "\u5426"});
 		GridData gd_cpIsMember = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_cpIsMember.widthHint = 13;
 		cpIsMember.setLayoutData(gd_cpIsMember);
@@ -220,5 +227,63 @@ public class BasicInfoCmp extends Composite {
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
+	}
+	
+	private Customer customer;
+	private Group group;
+	
+	public void setCustomer(Customer cus){
+		this.customer = cus;
+		
+		if(this.customer == null){
+			clearData();
+			return;
+		}else{
+			setData(customer);
+		}
+	}
+	
+	private void setText(Text text, String str){
+		if(Util.isEmpty(str)){
+			text.setText("");
+		}else{
+			text.setText(str);
+		}
+	}
+	
+	private void setData(Customer cus){
+		setText(textName, cus.getName());
+		setText(textAddress, cus.getAddress());
+		setText(textIdentify, cus.getIdentify());
+		//家庭总资产
+		BigDecimal total = IncomeService.getInstance().getTotalCapital(cus.getRowID());
+		textTotalMoney.setText(Util.toPlainString(total));
+		//TODO:家庭总负债没有数据,家庭净资产没有数据
+		textLoadMoney.setText("");
+		textNetAsset.setText("");
+		//家庭年收入
+		BigDecimal yearIncome = IncomeService.getInstance().getFamilyTotalIncome(cus.getRowID());
+		textYearIncome.setText(Util.toPlainString(yearIncome));
+		BigDecimal yearOutput = IncomeService.getInstance().getTotalOutput(cus.getRowID());
+		textYearOutput.setText(Util.toPlainString(yearOutput));
+		//纯收入
+		BigDecimal netIncome = IncomeService.getInstance().getFamilyNetIncome(cus.getRowID());
+		textYearNetIncome.setText(Util.toPlainString(netIncome));
+		
+		//TODO:生产经营的数据还没有
+		
+	}
+
+	private void clearData() {
+		Control[] ctrls = group.getChildren();
+		for(Control c : ctrls){
+			if(c instanceof Text){
+				Text text = (Text) c;
+				text.setText("");
+			}else if(c instanceof Combo){
+				Combo co = (Combo) c;
+				co.setText("");
+			}
+		}
 	}
 }

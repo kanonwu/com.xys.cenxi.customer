@@ -249,6 +249,9 @@ public class Util {
 //	}
 	
 	public static String toPlainString(BigDecimal value){
+		if(value == null)
+			return "";
+		
 		BigDecimal big = null;
 		big = value.setScale(2, BigDecimal.ROUND_HALF_UP);
 		return big.toPlainString();

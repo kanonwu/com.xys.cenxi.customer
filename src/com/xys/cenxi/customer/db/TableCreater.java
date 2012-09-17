@@ -18,6 +18,8 @@ import com.xys.cenxi.customer.pojo.FarmMachine;
 import com.xys.cenxi.customer.pojo.ForestRights;
 import com.xys.cenxi.customer.pojo.Housing;
 import com.xys.cenxi.customer.pojo.OtherIncome;
+import com.xys.cenxi.customer.pojo.RateConclusion;
+import com.xys.cenxi.customer.pojo.Rating;
 import com.xys.cenxi.customer.pojo.Regional;
 import com.xys.cenxi.customer.pojo.User;
 import com.xys.cenxi.customer.pojo.Vehicle;
@@ -70,6 +72,9 @@ public class TableCreater {
 			
 			UserService.getInstance().add(admin);
 		}
+		
+		dao.create(Rating.class, dropTable);
+		dao.create(RateConclusion.class, dropTable);
 	}
 	
 }

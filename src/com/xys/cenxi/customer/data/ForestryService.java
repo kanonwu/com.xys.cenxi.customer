@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
@@ -71,5 +72,17 @@ public class ForestryService {
 	public List<ForestRights> getAllForestRights(){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(ForestRights.class, null);
+	}
+	
+	public BigDecimal getTotalCapital(String customerID){
+		List<ForestRights> forest = getForestry(customerID);
+		float result = 0.0f;
+		for(ForestRights f : forest){
+			if(f.getPrice() != null){
+				result += f.getPrice();
+			}
+		}
+		
+		return BigDecimal.valueOf(result);
 	}
 }
