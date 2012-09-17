@@ -40,6 +40,10 @@ public class Family implements Serializable {
 	private String marry;
 	
 	private String phone;
+	
+	private String jobCode;
+	
+	private String bankCode;
 
 	public String getRowID() {
 		return rowID;
@@ -135,6 +139,22 @@ public class Family implements Serializable {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String getJobCode() {
+		return jobCode;
+	}
+
+	public void setJobCode(String jobCode) {
+		this.jobCode = jobCode;
+	}
+
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
 	}
 	
 	

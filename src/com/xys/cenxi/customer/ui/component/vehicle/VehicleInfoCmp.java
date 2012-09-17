@@ -197,11 +197,14 @@ public class VehicleInfoCmp extends Composite {
 	}
 	
 	public void setVehicle(Vehicle vehicle1){
-		this.vehicle = vehicle1;
 		if(vehicle1 == null){
-			clearData();
+			if(this.vehicle != null){
+				clearData();
+			}
+			this.vehicle = vehicle1;
 			return;
 		}
+		this.vehicle = vehicle1;
 		
 		if(!Util.isEmpty(vehicle.getLicense())){
 			textLicense.setText(vehicle.getLicense());

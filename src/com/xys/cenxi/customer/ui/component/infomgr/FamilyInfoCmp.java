@@ -3,18 +3,23 @@ package com.xys.cenxi.customer.ui.component.infomgr;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.VerifyEvent;
+import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import com.xys.cenxi.customer.data.BasicDataService;
 import com.xys.cenxi.customer.data.EducationService;
 import com.xys.cenxi.customer.data.GenderService;
 import com.xys.cenxi.customer.data.HealthyService;
@@ -22,12 +27,9 @@ import com.xys.cenxi.customer.data.MarryService;
 import com.xys.cenxi.customer.data.RelationService;
 import com.xys.cenxi.customer.pojo.Customer;
 import com.xys.cenxi.customer.pojo.Family;
+import com.xys.cenxi.customer.pojo.basic.BasicData;
 import com.xys.cenxi.customer.util.UIUtil;
 import com.xys.cenxi.customer.util.Util;
-import org.eclipse.swt.events.VerifyListener;
-import org.eclipse.swt.events.VerifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.ModifyEvent;
 
 public class FamilyInfoCmp extends Composite {
 	private Text textName;
@@ -45,6 +47,8 @@ public class FamilyInfoCmp extends Composite {
 	private Family family;
 	private Text textAge;
 	private Label lblIdLength;
+	private Combo cbJob;
+	private Combo cbBank;
 
 	/**
 	 * Create the composite.
@@ -138,6 +142,7 @@ public class FamilyInfoCmp extends Composite {
 		label_9.setText("\u5E74\u9F84\uFF1A");
 		
 		textAge = new Text(composite, SWT.BORDER);
+		textAge.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		textAge.addVerifyListener(new VerifyListener() {
 			public void verifyText(VerifyEvent e) {
 				//校验年龄：位数不能超过2位
@@ -149,7 +154,6 @@ public class FamilyInfoCmp extends Composite {
 				}
 			}
 		});
-		textAge.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(composite, SWT.NONE);
 		
 		Label label_5 = new Label(composite, SWT.NONE);
@@ -165,7 +169,9 @@ public class FamilyInfoCmp extends Composite {
 		label_4.setText("\u5065\u5EB7\u72B6\u51B5\uFF1A");
 		
 		cbHealthy = new Combo(composite, SWT.READ_ONLY);
-		cbHealthy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		GridData gd_cbHealthy = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cbHealthy.widthHint = 69;
+		cbHealthy.setLayoutData(gd_cbHealthy);
 		new Label(composite, SWT.NONE);
 		
 		Label label_7 = new Label(composite, SWT.NONE);
@@ -181,7 +187,27 @@ public class FamilyInfoCmp extends Composite {
 		label_6.setText("\u5A5A\u59FB\u72B6\u51B5\uFF1A");
 		
 		cbMarry = new Combo(composite, SWT.READ_ONLY);
-		cbMarry.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		GridData gd_cbMarry = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cbMarry.widthHint = 70;
+		cbMarry.setLayoutData(gd_cbMarry);
+		new Label(composite, SWT.NONE);
+		
+		Label label_10 = new Label(composite, SWT.NONE);
+		label_10.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_10.setText("\u804C\u4E1A\uFF1A");
+		
+		cbJob = new Combo(composite, SWT.READ_ONLY);
+		cbJob.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		new Label(composite, SWT.NONE);
+		
+		Label label_11 = new Label(composite, SWT.NONE);
+		label_11.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_11.setText("\u4E3B\u8981\u5B58\u6B3E\uFF1A");
+		
+		cbBank = new Combo(composite, SWT.READ_ONLY);
+		GridData gd_cbBank = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cbBank.widthHint = 70;
+		cbBank.setLayoutData(gd_cbBank);
 		new Label(composite, SWT.NONE);
 
 		initInput();
@@ -240,6 +266,22 @@ public class FamilyInfoCmp extends Composite {
 		if(relation.length > 0){
 			cbRelation.select(0);
 		}
+		
+		//职业
+		BasicData[] jobs = BasicDataService.getInstant().getJobs();
+		cbJob.add("");
+		for(BasicData bd : jobs){
+			cbJob.add(bd.getName());
+		}
+		cbJob.select(0);
+		//主要存款
+		BasicData[] banks = BasicDataService.getInstant().getBanks();
+		cbBank.add("");
+		for(BasicData bd : banks){
+			cbBank.add(bd.getName());
+		}
+		cbBank.select(0);
+
 	}
 	
 	/**
@@ -293,15 +335,33 @@ public class FamilyInfoCmp extends Composite {
 		if(this.master != null){
 			family.setOwnerID(master.getRowID());
 		}
+		
+		if(!Util.isEmpty(cbJob.getText())){
+			BasicData job = BasicDataService.getInstant().getJobByName(cbJob.getText());
+			family.setJobCode(job.getCode());
+		}else{
+			family.setJobCode(null);
+		}
+		
+		if(!Util.isEmpty(cbBank.getText())){
+			BasicData bank = BasicDataService.getInstant().getBankByName(cbBank.getText());
+			family.setBankCode(bank.getCode());
+		}else{
+			family.setBankCode(null);
+		}
+		
 		return family;
 	}
 	
 	public void setFamily(Family fa){
-		this.family = fa;
 		if(fa == null){
-			clearData();
+			if(this.family != null){
+				clearData();
+			}
+			this.family = fa;
 			return;
 		}
+		this.family = fa;
 		
 		if(!Util.isEmpty(fa.getName())){
 			textName.setText(fa.getName());
@@ -349,6 +409,28 @@ public class FamilyInfoCmp extends Composite {
 			cbMarry.setText("");
 		}
 		
+		if(!Util.isEmpty(fa.getJobCode())){
+			BasicData job = BasicDataService.getInstant().getJobByCode(fa.getJobCode());
+			if(job != null){
+				cbJob.setText(job.getName());
+			}else{
+				cbJob.setText("");
+			}
+		}else{
+			cbJob.setText("");
+		}
+		
+		if(!Util.isEmpty(fa.getBankCode())){
+			BasicData bank = BasicDataService.getInstant().getBankByCode(fa.getBankCode());
+			if(bank != null){
+				cbBank.setText(bank.getName());
+			}else{
+				cbBank.setText("");
+			}
+		}else{
+			cbBank.setText("");
+		}
+		
 		textName.setFocus();
 	}
 
@@ -364,6 +446,8 @@ public class FamilyInfoCmp extends Composite {
 		dtBirthday.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 		cbHealthy.setSelection(selPoint);
 		cbMarry.setSelection(selPoint);
+		cbBank.setText("");
+		cbJob.setText("");
 		
 		textName.setFocus();
 	}

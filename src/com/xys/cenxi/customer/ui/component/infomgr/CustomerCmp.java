@@ -24,10 +24,12 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import com.xys.cenxi.customer.data.EducationService;
 import com.xys.cenxi.customer.data.GenderService;
 import com.xys.cenxi.customer.data.HealthyService;
+import com.xys.cenxi.customer.data.BasicDataService;
 import com.xys.cenxi.customer.data.MarryService;
 import com.xys.cenxi.customer.data.RegionalService;
 import com.xys.cenxi.customer.pojo.Customer;
 import com.xys.cenxi.customer.pojo.Regional;
+import com.xys.cenxi.customer.pojo.basic.BasicData;
 import com.xys.cenxi.customer.ui.component.regional.RegionalDialog;
 import com.xys.cenxi.customer.util.UIUtil;
 import com.xys.cenxi.customer.util.Util;
@@ -130,18 +132,17 @@ public class CustomerCmp extends Composite {
 		label_17.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_17.setText("\u804C\u4E1A\uFF1A");
 		
-		text_1 = new Text(this, SWT.BORDER);
-		text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		cbJob = new Combo(this, SWT.READ_ONLY);
+		cbJob.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(this, SWT.NONE);
 		
 		Label label_18 = new Label(this, SWT.NONE);
 		label_18.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_18.setText("\u4E3B\u8981\u5B58\u6B3E\uFF1A");
 		
-		Combo combo = new Combo(this, SWT.READ_ONLY);
-		combo.setItems(new String[] {"", "\u519C\u6751\u5408\u4F5C\u94F6\u884C", "\u519C\u4E1A\u94F6\u884C", "\u90AE\u653F\u94F6\u884C", "\u5DE5\u5546\u94F6\u884C", "\u5EFA\u8BBE\u94F6\u884C", "\u4EA4\u901A\u94F6\u884C", "\u4E2D\u56FD\u94F6\u884C", "\u5176\u4ED6"});
-		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		combo.select(0);
+		cbMainBank = new Combo(this, SWT.READ_ONLY);
+		cbMainBank.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		cbMainBank.select(0);
 		
 		Label lblNewLabel_3 = new Label(this, SWT.NONE);
 		lblNewLabel_3.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
@@ -321,16 +322,9 @@ public class CustomerCmp extends Composite {
 				}
 			}
 		});
-		GridData gd_textDesc = new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1);
+		GridData gd_textDesc = new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1);
 		gd_textDesc.heightHint = 43;
 		textDesc.setLayoutData(gd_textDesc);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
 
 		initInput();
 	}
@@ -406,12 +400,28 @@ public class CustomerCmp extends Composite {
 		if(healthy.length  > 0){
 			comboHealthy.select(0);
 		}
+		
+		//职业
+		BasicData[] jobs = BasicDataService.getInstant().getJobs();
+		cbJob.add("");
+		for(BasicData bd : jobs){
+			cbJob.add(bd.getName());
+		}
+		cbJob.select(0);
+		//主要存款
+		BasicData[] banks = BasicDataService.getInstant().getBanks();
+		cbMainBank.add("");
+		for(BasicData bd : banks){
+			cbMainBank.add(bd.getName());
+		}
+		cbMainBank.select(0);
 	}
 	
 	private Customer customer;
 	private Label lblIdentify;
 	private Text textRegional;
-	private Text text_1;
+	private Combo cbJob;
+	private Combo cbMainBank;
 	
 	/**
 	 * 校验输入数据，返回错误信息，如果没有错误，返回null
@@ -501,12 +511,30 @@ public class CustomerCmp extends Composite {
 		customer.setDesc(textDesc.getText());
 		if(comboEducation.getSelectionIndex() > 0){
 			customer.setEducation(comboEducation.getText());
+		}else{
+			customer.setEducation(null);
 		}
 		
 		customer.setEmail(textEmail.getText());
 		customer.setGender(comboGender.getText());
 		if(comboHealthy.getSelectionIndex() > 0){
 			customer.setHealthy(comboHealthy.getText());
+		}else{
+			customer.setHealthy(null);
+		}
+		
+		if(!Util.isEmpty(cbJob.getText())){
+			BasicData job = BasicDataService.getInstant().getJobByName(cbJob.getText());
+			customer.setJobCode(job.getCode());
+		}else{
+			customer.setJobCode(null);
+		}
+		
+		if(!Util.isEmpty(cbMainBank.getText())){
+			BasicData bank = BasicDataService.getInstant().getBankByName(cbMainBank.getText());
+			customer.setBankCode(bank.getCode());
+		}else{
+			customer.setBankCode(null);
 		}
 		
 		customer.setIdentify(textIdentify.getText());
@@ -616,6 +644,28 @@ public class CustomerCmp extends Composite {
 		}else{
 			textRegional.setText("");
 		}
+		
+		if(!Util.isEmpty(customer.getJobCode())){
+			BasicData job = BasicDataService.getInstant().getJobByCode(customer.getJobCode());
+			if(job != null){
+				cbJob.setText(job.getName());
+			}else{
+				cbJob.setText("");
+			}
+		}else{
+			cbJob.setText("");
+		}
+		
+		if(!Util.isEmpty(customer.getBankCode())){
+			BasicData bank = BasicDataService.getInstant().getBankByCode(customer.getBankCode());
+			if(bank != null){
+				cbMainBank.setText(bank.getName());
+			}else{
+				cbMainBank.setText("");
+			}
+		}else{
+			cbMainBank.setText("");
+		}
 	}
 	
 	private void clearData(){
@@ -636,6 +686,8 @@ public class CustomerCmp extends Composite {
 		comboMarry.setSelection(selPoint);
 		comboHealthy.setSelection(selPoint);
 		comboEducation.setSelection(selPoint);
+		cbJob.setText("");
+		cbMainBank.setText("");
 		
 		textArchivesID.setFocus();
 	}

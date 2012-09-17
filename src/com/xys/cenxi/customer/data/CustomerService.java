@@ -6,6 +6,8 @@ import java.util.List;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.sql.Criteria;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xys.cenxi.customer.data.query.CustomerQueryKey;
 import com.xys.cenxi.customer.db.DataSourceManager;
@@ -14,6 +16,8 @@ import com.xys.cenxi.customer.util.OrderGenerator;
 import com.xys.cenxi.customer.util.Util;
 
 public class CustomerService {
+	
+	private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
 
 	private static CustomerService service;
 	
@@ -38,7 +42,7 @@ public class CustomerService {
 		return dao.insert(customer);
 	}
 	
-	public void add(List<Customer> cus){
+	public void add(List<? extends Customer> cus){
 		Dao dao = DataSourceManager.getDao();
 		for(Customer c : cus){
 			dao.insert(c);
@@ -105,5 +109,39 @@ public class CustomerService {
 	public List<Customer> getAllCustomer(){
 		Dao dao = DataSourceManager.getDao();
 		return dao.query(Customer.class, null);
+	}
+
+	
+	private boolean isStructureChange(){
+		Dao dao = DataSourceManager.getDao();
+		boolean change = false;
+		try {
+			Customer cus = dao.fetch(Customer.class);
+			dao.update(cus);
+		} catch (Exception e) {
+			//有异常，说明表结构发生改变
+			log.info("表结构发现改变: {}", e);
+			change = true;
+		}
+		return change;
+	}
+	
+	public  void doStructureChange(){
+		if(!isStructureChange()){
+			return;
+		}
+		log.warn("表结构发生改变，需要重建表。");
+		
+		//先把数据查询出来
+		log.info("查出全部数据");
+		List<Customer> data = getAllCustomer();
+		//重新建表
+		log.info("重建表");
+		Dao dao = DataSourceManager.getDao();
+		dao.create(Customer.class, true);
+		//插入数据
+		log.info("重新插入数据");
+		add(data);
+		log.warn("表结构修改完成。");
 	}
 }

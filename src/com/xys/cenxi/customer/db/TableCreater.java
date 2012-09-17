@@ -6,6 +6,8 @@ import org.nutz.dao.Dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xys.cenxi.customer.data.CustomerService;
+import com.xys.cenxi.customer.data.FamilyService;
 import com.xys.cenxi.customer.data.RegionalService;
 import com.xys.cenxi.customer.data.UserService;
 import com.xys.cenxi.customer.pojo.Credidt;
@@ -75,6 +77,10 @@ public class TableCreater {
 		
 		dao.create(Rating.class, dropTable);
 		dao.create(RateConclusion.class, dropTable);
+		
+		//修改表结构
+		CustomerService.getService().doStructureChange();
+		FamilyService.getInstance().doStructureChange();
 	}
 	
 }

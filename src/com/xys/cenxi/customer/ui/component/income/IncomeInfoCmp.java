@@ -191,11 +191,14 @@ public class IncomeInfoCmp extends Composite {
 	}
 	
 	public void setIncome(FarmIncome income1){
-		this.income = income1;
 		if(income1 == null){
-			clearData();
+			if(this.income != null){
+				clearData();
+			}
+			this.income = income1;
 			return;
 		}
+		this.income = income1;
 		
 		if(!Util.isEmpty(income.getVariety())){
 			textVariety.setText(income.getVariety());

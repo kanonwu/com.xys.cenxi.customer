@@ -175,11 +175,14 @@ public class MachineInfoCmp extends Composite {
 	}
 	
 	public void setMachine(FarmMachine vehicle1){
-		this.machine = vehicle1;
 		if(vehicle1 == null){
-			clearData();
+			if(this.machine != null){
+				clearData();
+			}
+			this.machine = vehicle1;
 			return;
 		}
+		this.machine = vehicle1;
 		
 		if(!Util.isEmpty(machine.getName())){
 			textName.setText(machine.getName());

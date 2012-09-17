@@ -190,11 +190,14 @@ public class ForestryInfoCmp extends Composite {
 	}
 	
 	public void setForestRights(ForestRights house){
-		this.forest = house;
 		if(house == null){
-			clearData();
+			if(this.forest != null){
+				clearData();
+			}
+			this.forest = house;
 			return;
 		}
+		this.forest = house;
 		
 		if(!Util.isEmpty(house.getRightsID())){
 			textRightID.setText(house.getRightsID());

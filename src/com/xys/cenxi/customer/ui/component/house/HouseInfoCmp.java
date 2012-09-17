@@ -218,11 +218,14 @@ public class HouseInfoCmp extends Composite {
 	}
 	
 	public void setHouse(Housing house){
-		this.house = house;
 		if(house == null){
-			clearData();
+			if(this.house != null){
+				clearData();
+			}
+			this.house = house;
 			return;
 		}
+		this.house = house;
 		
 		if(!Util.isEmpty(house.getAddress())){
 			textAddress.setText(house.getAddress());

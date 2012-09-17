@@ -14,9 +14,6 @@ import org.nutz.dao.entity.annotation.Table;
 @Table("t_customer")
 public class Customer implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7555596455510083258L;
 
 	@Name
@@ -55,6 +52,10 @@ public class Customer implements Serializable{
 	private String desc;
 	
 	private Date modifyTime;
+	
+	private String jobCode;
+	
+	private String bankCode;
 
 	public String getRowID() {
 		return rowID;
@@ -198,6 +199,22 @@ public class Customer implements Serializable{
 
 	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
+	}
+
+	public String getJobCode() {
+		return jobCode;
+	}
+
+	public void setJobCode(String jobCode) {
+		this.jobCode = jobCode;
+	}
+
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
 	}
 	
 	

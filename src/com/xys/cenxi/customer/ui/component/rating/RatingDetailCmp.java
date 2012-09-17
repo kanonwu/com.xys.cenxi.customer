@@ -1,7 +1,5 @@
 package com.xys.cenxi.customer.ui.component.rating;
 
-import java.util.Calendar;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
@@ -1484,10 +1482,12 @@ public class RatingDetailCmp extends Composite {
 		if(!Util.isEmpty(conclu.getSecondNames())){
 			fpName.setText(conclu.getSecondNames());
 		}else{
-			fpName.setText(conclu.getSecondConclusions());
+			fpName.setText("");
 		}
 		if(!Util.isEmpty(conclu.getSecondConclusions())){
 			fpAdvise.setText(conclu.getSecondConclusions());
+		}else{
+			fpAdvise.setText("");
 		}
 		
 		if(conclu.getSecondDate() != null){
@@ -1565,6 +1565,8 @@ public class RatingDetailCmp extends Composite {
 		}
 		if(!Util.isEmpty(fpAdvise.getText())){
 			con.setSecondConclusions(fpAdvise.getText());
+		}else{
+			con.setSecondConclusions(null);
 		}
 		con.setSecondDate(UIUtil.getDate(fpDate));
 		
