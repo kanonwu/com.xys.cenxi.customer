@@ -6,6 +6,7 @@ import java.util.List;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.sql.Criteria;
+import org.nutz.dao.util.cri.Like;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,7 +88,10 @@ public class CustomerService {
 			cri.where().and("education", "=", key.education);
 		}
 		if(!Util.isEmpty(key.regional)){
-			cri.where().and("regional", "=", key.regional);
+			//去掉末尾0，查询以此字符串开始的行政区划
+			
+//			cri.where().and("regional", "=", key.regional);
+			cri.where().andLike("regional", Util.removeRightZero(key.regional));
 		}
 		if(!Util.isEmpty(key.address)){
 			cri.where().andLike("address", key.address);

@@ -34,11 +34,14 @@ public class TestUtil {
 		System.err.println(big.toString());
 		System.err.println(big.toPlainString());*/
 		
-		float f = 0.345f;
-		BigDecimal bf = BigDecimal.valueOf(f);
-		System.out.println(f);
-		System.out.println(bf);
-		System.out.println(bf.setScale(2, BigDecimal.ROUND_HALF_UP));
+//		float f = 0.345f;
+//		BigDecimal bf = BigDecimal.valueOf(f);
+//		System.out.println(f);
+//		System.out.println(bf);
+//		System.out.println(bf.setScale(2, BigDecimal.ROUND_HALF_UP));
+		
+		String str = "12";
+		System.out.println(str.substring(0, 1));
 	}
 
 }

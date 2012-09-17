@@ -267,4 +267,24 @@ public class Util {
 //			return f.toString();
 //		}
 	}
+	
+	/**
+	 * È¥µôÄ©Î²0
+	 * @param str
+	 * @return
+	 */
+	public static String removeRightZero(String str){
+		if(str == null){
+			return null;
+		}
+		
+		int index = str.length() - 1;
+		for(; index >= 0; index--){
+			if(str.charAt(index) != '0'){
+				break;
+			}
+		}
+		
+		return str.substring(0, index + 1);
+	}
 }
