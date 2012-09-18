@@ -10,12 +10,17 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xys.cenxi.customer.data.DataService;
+import com.xys.cenxi.customer.exception.CusException;
 import com.xys.cenxi.customer.util.UIUtil;
 import com.xys.cenxi.customer.util.Util;
 
 public class ExportAction implements SelectionListener {
+	
+	private static Logger log = LoggerFactory.getLogger(ExportAction.class);
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
@@ -36,7 +41,12 @@ public class ExportAction implements SelectionListener {
 			DataService.getInstance().exportData(fos);
 			UIUtil.showMessage("导出完成，文件保存到：" + filePath);
 		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+			log.error("导出数据出错：", e1);
+			UIUtil.showMessage("导出数据出错：" + e1.getMessage());
+//			e1.printStackTrace();
+		}catch (CusException e2){
+			log.error("导出数据出错：", e2);
+			UIUtil.showMessage(e2.getMessage());
 		}finally{
 			try {
 				fos.close();

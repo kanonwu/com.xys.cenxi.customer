@@ -1,13 +1,10 @@
 package com.xys.cenxi.customer.ui.ribbon.action;
 
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.xys.cenxi.customer.ui.component.user.ModifyUserDialog;
-import com.xys.cenxi.customer.ui.ribbon.SettingTab;
 
 public class ModifyUserAction implements SelectionListener {
 
