@@ -71,8 +71,17 @@ public class RegionalService {
 		Dao dao = DataSourceManager.getDao();
 		if (re.getRowID() == null) {
 			re.setRowID(OrderGenerator.newOrder());
+			return dao.insert(re);
+		}else{
+			//检查是否主键是否重复
+			Regional old = dao.fetch(re);
+			if(old != null){
+				dao.update(re);
+				return re;
+			}else{
+				return dao.insert(re);
+			}
 		}
-		return dao.insert(re);
 	}
 
 	public void loadRegionalFromFile(File file) throws Exception {

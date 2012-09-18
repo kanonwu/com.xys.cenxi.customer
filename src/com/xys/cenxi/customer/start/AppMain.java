@@ -14,6 +14,7 @@ import com.hexapixel.widgets.ribbon.RibbonShell;
 import com.xys.cenxi.customer.db.DataSourceManager;
 import com.xys.cenxi.customer.db.TableCreater;
 import com.xys.cenxi.customer.ui.ribbon.CustomerInfoTab;
+import com.xys.cenxi.customer.ui.ribbon.DataTab;
 import com.xys.cenxi.customer.ui.ribbon.SettingTab;
 
 public class AppMain{
@@ -100,8 +101,11 @@ public class AppMain{
 	public void createFolder(){
 		CustomerInfoTab customerTab = new CustomerInfoTab(shell.getRibbonTabFolder());
 		customerTab.createContent();
+		DataTab dataTab = new DataTab(shell.getRibbonTabFolder());
+		dataTab.createContent();
 		SettingTab settingTab = new SettingTab(shell.getRibbonTabFolder());
 		settingTab.createContent();
+		
 	}
 
 	public void createMenu(){

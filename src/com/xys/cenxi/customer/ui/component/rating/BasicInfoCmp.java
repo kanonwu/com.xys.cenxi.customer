@@ -2,17 +2,16 @@ package com.xys.cenxi.customer.ui.component.rating;
 
 import java.math.BigDecimal;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.SWT;
-import de.kupzog.ktable.KTable;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Combo;
 
 import com.xys.cenxi.customer.data.IncomeService;
 import com.xys.cenxi.customer.pojo.Customer;

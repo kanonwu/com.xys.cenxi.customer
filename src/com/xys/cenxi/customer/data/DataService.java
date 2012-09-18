@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.data;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +21,8 @@ import com.xys.cenxi.customer.pojo.FarmMachine;
 import com.xys.cenxi.customer.pojo.ForestRights;
 import com.xys.cenxi.customer.pojo.Housing;
 import com.xys.cenxi.customer.pojo.OtherIncome;
+import com.xys.cenxi.customer.pojo.RateConclusion;
+import com.xys.cenxi.customer.pojo.Rating;
 import com.xys.cenxi.customer.pojo.Vehicle;
 
 /**
@@ -31,8 +34,24 @@ public class DataService {
 	
 	private static Logger log = LoggerFactory.getLogger(DataService.class);
 	
-	public void writeData(ObjectOutputStream oos){
+	private static DataService service;
+	
+	private DataService(){
+		
+	}
+	
+	public static DataService getInstance(){
+		if(service == null){
+			service = new DataService();
+		}
+		
+		return service;
+	}
+	
+	public void exportData(FileOutputStream fis){
 		try {
+			ObjectOutputStream oos = new ObjectOutputStream(fis);
+			log.info("开始导出数据。");
 			writeCredidt(oos);
 			writeCustomer(oos);
 			writeDebitCnd(oos);
@@ -44,6 +63,8 @@ public class DataService {
 			writeHouse(oos);
 			writeOtherIncome(oos);
 			writeVehicle(oos);
+			writeRateResult(oos);
+			log.info("数据导出完成。");
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.error("导出数据出错：", e);
@@ -51,8 +72,10 @@ public class DataService {
 		}
 	}
 	
-	public void importData(ObjectInputStream ois){
+	public void importData(FileInputStream fis){
 		try {
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			log.info("开始导入数据。");
 			readCredidt(ois);
 			readCustomer(ois);
 			readDebitCnd(ois);
@@ -64,6 +87,8 @@ public class DataService {
 			readHouse(ois);
 			readOtherIncome(ois);
 			readVehicle(ois);
+			readRateResult(ois);
+			log.info("导入数据完成。");
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.error("导入数据出错：", e);
@@ -127,34 +152,14 @@ public class DataService {
 		List<Vehicle> veh = VehicleService.getInstance().getAllVehicle();
 		aoos.writeObject(veh);
 	}
-
-	public void exportData(FileOutputStream fos){
-		log.info("开始导出数据。");
-		ObjectOutputStream oos = null;
-		try {
-			oos = new ObjectOutputStream(fos);
-			writeCredidt(oos);
-			writeCustomer(oos);
-			writeDebitCnd(oos);
-			writeFamily(oos);
-			writeFarmMachine(oos);
-			writeForestry(oos);
-			writeHouse(oos);
-			writeOtherIncome(oos);
-			writeVehicle(oos);
-		} catch (IOException e) {
-			log.error("导出数据出错：", e);
-			throw new CusException("导出数据出错：", e);
-		}finally{
-			try {
-				oos.close();
-			} catch (IOException e) {
-				log.error("关闭对象输出流出错：", e);
-			}
-		}
-		
-		log.info("导出数据结束。");
+	
+	public void writeRateResult(ObjectOutputStream oos) throws IOException{
+		List<Rating> ratings = RatingService.getInstance().getAllRating();
+		oos.writeObject(ratings);
+		List<RateConclusion> con = RatingService.getInstance().getAllRateConclution();
+		oos.writeObject(con);
 	}
+
 	
 	@SuppressWarnings("unchecked")
 	public void readCredidt(ObjectInputStream ois) throws IOException, ClassNotFoundException{
@@ -220,6 +225,15 @@ public class DataService {
 	public void readVehicle(ObjectInputStream ois) throws IOException, ClassNotFoundException{
 		List<Vehicle> ve = (List<Vehicle>) ois.readObject();
 		VehicleService.getInstance().add(ve);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void readRateResult(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+		//评分结果
+		List<Rating> rating = (List<Rating>) ois.readObject();
+		List<RateConclusion> con = (List<RateConclusion>) ois.readObject();
+		RatingService.getInstance().add(rating);
+		RatingService.getInstance().addRateConclusion(con);
 	}
 	
 }

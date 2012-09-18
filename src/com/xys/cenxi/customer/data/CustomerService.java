@@ -6,7 +6,6 @@ import java.util.List;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.sql.Criteria;
-import org.nutz.dao.util.cri.Like;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,18 +34,27 @@ public class CustomerService {
 	
 	public Customer addCustomer(Customer customer){
 		Dao dao = DataSourceManager.getDao();
+		customer.setModifyTime(new Date());
 		if(customer.getRowID() == null){
 			customer.setRowID(OrderGenerator.newOrder());
-		}
-		customer.setModifyTime(new Date());
+			return dao.insert(customer);
+		}else{
+			//检查是否主键是否重复
+			Customer old = dao.fetch(customer);
+			if(old != null){
+				dao.update(customer);
+				return customer;
+			}else{
+				return dao.insert(customer);
+			}
 		
-		return dao.insert(customer);
+		}
+		
 	}
 	
 	public void add(List<? extends Customer> cus){
-		Dao dao = DataSourceManager.getDao();
 		for(Customer c : cus){
-			dao.insert(c);
+			addCustomer(c);
 		}
 	}
 	

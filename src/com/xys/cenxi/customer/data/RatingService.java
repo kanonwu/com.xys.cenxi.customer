@@ -67,8 +67,14 @@ public class RatingService {
 			fa.setRowID(OrderGenerator.newOrder());
 			return dao.insert(fa);
 		}else{
-			dao.update(fa);
-			return fa;
+			//检查是否主键是否重复
+			Rating old = dao.fetch(fa);
+			if(old != null){
+				dao.update(fa);
+				return fa;
+			}else{
+				return dao.insert(fa);
+			}
 		}
 	}
 	
@@ -131,6 +137,7 @@ public class RatingService {
 		//TODO:删除综合评分结果及评分意见
 	}
 	
+	
 	/**
 	 * 返回的结果必须含有18项评分项，当没有评分数据时，评分项内容为空
 	 * @param customerID 
@@ -149,7 +156,7 @@ public class RatingService {
 		
 		RateResult result = new RateResult(firstRating, secondRating);
 		
-		RateConclusion con = getRateconclusion(customerID);
+		RateConclusion con = getRateConclusion(customerID);
 		result.setConclusion(con);
 		return result;
 	}
@@ -174,7 +181,12 @@ public class RatingService {
 		return rates;
 	}
 	
-	public RateConclusion getRateconclusion(String customerID){
+	public List<RateConclusion> getAllRateConclution(){
+		Dao dao = DataSourceManager.getDao();
+		return dao.query(RateConclusion.class, null);
+	}
+	
+	public RateConclusion getRateConclusion(String customerID){
 		Dao dao = DataSourceManager.getDao();
 		return dao.fetch(RateConclusion.class, Cnd.where("ownerID", "=", customerID));
 	}
@@ -190,8 +202,20 @@ public class RatingService {
 			conclusion.setRowID(OrderGenerator.newOrder());
 			return dao.insert(conclusion);
 		}else{
-			dao.update(conclusion);
-			return conclusion;
+			//检查是否主键是否重复
+			RateConclusion old = dao.fetch(conclusion);
+			if(old != null){
+				dao.update(conclusion);
+				return conclusion;
+			}else{
+				return dao.insert(conclusion);
+			}
+		}
+	}
+	
+	public void addRateConclusion(List<RateConclusion> cons){
+		for(RateConclusion rc : cons){
+			add(rc);
 		}
 	}
 	

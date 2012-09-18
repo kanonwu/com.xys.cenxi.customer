@@ -30,15 +30,22 @@ public class CredidtService {
 		Dao dao = DataSourceManager.getDao();
 		if(fa.getRowID() == null){
 			fa.setRowID(OrderGenerator.newOrder());
+			return dao.insert(fa);
+		}else{
+			//检查是否主键是否重复
+			Credidt old = dao.fetch(fa);
+			if(old != null){
+				dao.update(fa);
+				return fa;
+			}else{
+				return dao.insert(fa);
+			}
 		}
-		
-		return dao.insert(fa);
 	}
 	
 	public void add(List<Credidt> cr){
-		Dao dao = DataSourceManager.getDao();
 		for(Credidt c : cr){
-			dao.insert(c);
+			add(c);
 		}
 	}
 	
@@ -85,17 +92,25 @@ public class CredidtService {
 	}
 	
 	public DebitCnd add(DebitCnd debit){
+		Dao dao = DataSourceManager.getDao();
 		if(debit.getRowID() == null){
 			debit.setRowID(OrderGenerator.newOrder());
+			return dao.insert(debit);
+		}else{
+			//检查主键
+			DebitCnd cnd = dao.fetch(debit);
+			if(cnd != null){
+				dao.update(debit);
+				return debit;
+			}else{
+				return dao.insert(debit);
+			}
 		}
-		Dao dao = DataSourceManager.getDao();
-		return dao.insert(debit);
 	}
 	
 	public void addDebitCnd(List<DebitCnd> deb){
-		Dao dao = DataSourceManager.getDao();
 		for(DebitCnd d : deb){
-			dao.insert(d);
+			add(d);
 		}
 	}
 	

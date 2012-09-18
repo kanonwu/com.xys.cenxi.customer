@@ -24,6 +24,11 @@ public class Util {
 	public static final SimpleDateFormat DATETIME_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	/**
+	 * 日期时间格式：yyyy-MM-dd HH_mm_ss
+	 */
+	public static final SimpleDateFormat DATETIME_SDF2 = new SimpleDateFormat("yyyy-MM-dd HH_mm_ss");
+	
+	/**
 	 * 日期格式 yyyy-MM-dd，没有时间
 	 */
 	public static final SimpleDateFormat DATE_SDF = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,6 +59,8 @@ public class Util {
 	 * 身份证生日
 	 */
 	public static final SimpleDateFormat SDF_BIRTHDAY = new SimpleDateFormat("yyyyMMdd");
+	
+	public static final String EXP_FILE_NAME = ".nhh";
 	
 	/**
 	 * 得到工程项目运行路径，绝对路径

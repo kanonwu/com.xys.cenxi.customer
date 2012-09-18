@@ -33,15 +33,22 @@ public class FamilyService {
 		Dao dao = DataSourceManager.getDao();
 		if(fa.getRowID() == null){
 			fa.setRowID(OrderGenerator.newOrder());
+			return dao.insert(fa);
+		}else{
+			//检查是否主键是否重复
+			Family old = dao.fetch(fa);
+			if(old != null){
+				dao.update(fa);
+				return fa;
+			}else{
+				return dao.insert(fa);
+			}
 		}
-		
-		return dao.insert(fa);
 	}
 	
 	public void add(List<? extends Family> fa){
-		Dao dao = DataSourceManager.getDao();
 		for(Family f : fa){
-			dao.insert(f);
+			add(f);
 		}
 	}
 	

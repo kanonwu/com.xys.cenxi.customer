@@ -30,15 +30,23 @@ public class ForestryService {
 		Dao dao = DataSourceManager.getDao();
 		if(fa.getRowID() == null){
 			fa.setRowID(OrderGenerator.newOrder());
+			return dao.insert(fa);
+		}else{
+			//检查是否主键是否重复
+			ForestRights old = dao.fetch(fa);
+			if(old != null){
+				dao.update(fa);
+				return fa;
+			}else{
+				return dao.insert(fa);
+			}
 		}
 		
-		return dao.insert(fa);
 	}
 	
 	public void add(List<ForestRights> fr){
-		Dao dao = DataSourceManager.getDao();
 		for(ForestRights f : fr){
-			dao.insert(f);
+			add(f);
 		}
 	}
 	

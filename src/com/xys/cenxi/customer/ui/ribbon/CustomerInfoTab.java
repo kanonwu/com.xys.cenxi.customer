@@ -1,5 +1,7 @@
 package com.xys.cenxi.customer.ui.ribbon;
 
+import org.eclipse.wb.swt.SWTResourceManager;
+
 import com.hexapixel.widgets.ribbon.RibbonButton;
 import com.hexapixel.widgets.ribbon.RibbonGroup;
 import com.hexapixel.widgets.ribbon.RibbonTab;
@@ -34,7 +36,8 @@ public class CustomerInfoTab {
 		rtCustom = new RibbonTab(parent, name);
 		
 		rgFarmerInfo = new RibbonGroup(rtCustom, "农户信息");
-		rbFarmerInfo = new RibbonButton(rgFarmerInfo, null, "农户信息", RibbonButton.STYLE_NO_DEPRESS);
+		rbFarmerInfo = new RibbonButton(rgFarmerInfo, SWTResourceManager.getImage(CustomerInfoTab.class, "/icons/customer_info.png"),
+				"农户信息", RibbonButton.STYLE_NO_DEPRESS);
 		
 //		rgOtherInfo = new RibbonGroup(rtCustom, "非农户信息");
 ////		rbgOther = new RibbonButtonGroup(rgOtherInfo);

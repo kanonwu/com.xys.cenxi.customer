@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,8 +8,10 @@ import java.util.List;
  * @author wjl
  *
  */
-public class RateResult {
+public class RateResult implements Serializable {
 	
+	private static final long serialVersionUID = 5938468620643772403L;
+
 	private List<Rating> firstRating;
 	
 	private List<Rating> secondRating;

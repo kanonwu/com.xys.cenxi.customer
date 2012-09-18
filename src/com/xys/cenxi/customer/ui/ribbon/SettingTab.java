@@ -1,5 +1,7 @@
 package com.xys.cenxi.customer.ui.ribbon;
 
+import org.eclipse.wb.swt.SWTResourceManager;
+
 import com.hexapixel.widgets.ribbon.RibbonButton;
 import com.hexapixel.widgets.ribbon.RibbonGroup;
 import com.hexapixel.widgets.ribbon.RibbonTab;
@@ -29,6 +31,7 @@ public class SettingTab {
 		
 		rgSetting = new RibbonGroup(rtSetting, "用户");
 		rbUserModify = new RibbonButton(rgSetting, null, "修改用户名密码", RibbonButton.STYLE_NO_DEPRESS);
+		rbUserModify.setImage(SWTResourceManager.getImage(SettingTab.class, "/icons/modify_user.png"));
 		
 //		rgOtherInfo = new RibbonGroup(rtCustom, "非农户信息");
 ////		rbgOther = new RibbonButtonGroup(rgOtherInfo);

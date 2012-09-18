@@ -9,8 +9,6 @@ import org.nutz.dao.Dao;
 import com.xys.cenxi.customer.db.DataSourceManager;
 import com.xys.cenxi.customer.pojo.FamilyOutput;
 import com.xys.cenxi.customer.pojo.FarmIncome;
-import com.xys.cenxi.customer.pojo.ForestRights;
-import com.xys.cenxi.customer.pojo.Housing;
 import com.xys.cenxi.customer.pojo.OtherIncome;
 import com.xys.cenxi.customer.util.OrderGenerator;
 
@@ -33,9 +31,17 @@ public class IncomeService {
 		Dao dao = DataSourceManager.getDao();
 		if(fa.getRowID() == null){
 			fa.setRowID(OrderGenerator.newOrder());
+			return dao.insert(fa);
+		}else{
+			//检查是否主键是否重复
+			FarmIncome old = dao.fetch(fa);
+			if(old != null){
+				dao.update(fa);
+				return fa;
+			}else{
+				return dao.insert(fa);
+			}
 		}
-		
-		return dao.insert(fa);
 	}
 	
 	public void addFarmIncome(List<FarmIncome> income){
@@ -155,8 +161,17 @@ public class IncomeService {
 		Dao dao = DataSourceManager.getDao();
 		if(income.getRowID() == null){
 			income.setRowID(OrderGenerator.newOrder());
+			return dao.insert(income);
+		}else{
+			//检查是否主键是否重复
+			OtherIncome old = dao.fetch(income);
+			if(old != null){
+				dao.update(income);
+				return income;
+			}else{
+				return dao.insert(income);
+			}
 		}
-		return dao.insert(income);
 	}
 	
 	public void addOtherIncome(List<OtherIncome> ois){
@@ -169,8 +184,17 @@ public class IncomeService {
 		Dao dao = DataSourceManager.getDao();
 		if(output.getRowID() == null){
 			output.setRowID(OrderGenerator.newOrder());
+			return dao.insert(output);
+		}else{
+			//检查是否主键是否重复
+			FamilyOutput old = dao.fetch(output);
+			if(old != null){
+				dao.update(output);
+				return output;
+			}else{
+				return dao.insert(output);
+			}
 		}
-		return dao.insert(output);
 	}
 	
 	public void addFamilyOutput(List<FamilyOutput> out){

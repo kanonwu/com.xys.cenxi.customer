@@ -1,5 +1,6 @@
 package com.xys.cenxi.customer.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.nutz.dao.entity.annotation.Name;
@@ -11,7 +12,9 @@ import org.nutz.dao.entity.annotation.Table;
  *
  */
 @Table("t_rating")
-public class Rating {
+public class Rating implements Serializable{
+
+	private static final long serialVersionUID = -4016534358027372592L;
 
 	@Name
 	private String rowID;
