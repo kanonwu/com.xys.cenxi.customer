@@ -1368,7 +1368,7 @@ public class RatingDetailCmp extends Composite {
 		group2.setFont(SWTResourceManager.getFont("Î¢ÈíÑÅºÚ", 9, SWT.BOLD));
 		group2.setLayout(new GridLayout(4, false));
 		GridData gd_group2 = new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1);
-		gd_group2.heightHint = 143;
+		gd_group2.heightHint = 139;
 		group2.setLayoutData(gd_group2);
 		group2.setText("\u8BC4\u7EA7\u610F\u89C1");
 		
