@@ -41,7 +41,11 @@ public class TestUtil {
 //		System.out.println(bf.setScale(2, BigDecimal.ROUND_HALF_UP));
 		
 		String str = "12";
+		String str2 = null;
 		System.out.println(str.substring(0, 1));
+		String str3 = str + str2;
+		System.out.println(str3);
+		
 	}
 
 }

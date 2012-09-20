@@ -10,27 +10,44 @@ public class BasicDataService {
 	
 	private static final BasicData[] banks = new BasicData[8];
 	
+	private static final BasicData[] goodNomalBad = new BasicData[3];
+	
+	private static final BasicData[] yesNo = new BasicData[2];
+	
+	private static final BasicData[] publicGood = new BasicData[3];
+	
+	private static final String checkChar = "â˜‘";
+	
+	private static final String unCheckChar = "â–¡";
+	
 	
 	private BasicDataService(){
-		jobs[0] = new BasicData("0", "ÎñÅ©");
-		jobs[1] = new BasicData("1", "Îñ¹¤");
-		jobs[2] = new BasicData("2", "¾­ÉÌ");
-		jobs[3] = new BasicData("3", "¹«Ö°");
-		jobs[4] = new BasicData("4", "ÎŞÒµ");
-		jobs[5] = new BasicData("5", "ÉÏÑ§");
-		jobs[6] = new BasicData("6", "Ğ¡º¢");
-		jobs[7] = new BasicData("7", "ÀÏÈË");
-		jobs[8] = new BasicData("8", "Î´Öª");
-		jobs[9] = new BasicData("9", "ÆäËû");
+		jobs[0] = new BasicData("0", "åŠ¡å†œ");
+		jobs[1] = new BasicData("1", "åŠ¡å·¥");
+		jobs[2] = new BasicData("2", "ç»å•†");
+		jobs[3] = new BasicData("3", "å…¬èŒ");
+		jobs[4] = new BasicData("4", "æ— ä¸š");
+		jobs[5] = new BasicData("5", "ä¸Šå­¦");
+		jobs[6] = new BasicData("6", "å°å­©");
+		jobs[7] = new BasicData("7", "è€äºº");
+		jobs[8] = new BasicData("8", "æœªçŸ¥");
+		jobs[9] = new BasicData("9", "å…¶ä»–");
 		
-		banks[0] = new BasicData("0", "Å©´åºÏ×÷ÒøĞĞ");
-		banks[1] = new BasicData("1", "Å©ÒµÒøĞĞ");
-		banks[2] = new BasicData("2", "ÓÊÕşÒøĞĞ");
-		banks[3] = new BasicData("3", "¹¤ÉÌÒøĞĞ");
-		banks[4] = new BasicData("4", "½¨ÉèÒøĞĞ");
-		banks[5] = new BasicData("5", "½»Í¨ÒøĞĞ");
-		banks[6] = new BasicData("6", "ÖĞ¹úÒøĞĞ");
-		banks[7] = new BasicData("7", "ÆäËû");
+		banks[0] = new BasicData("0", "å†œæ‘åˆä½œé“¶è¡Œ");
+		banks[1] = new BasicData("1", "å†œä¸šé“¶è¡Œ");
+		banks[2] = new BasicData("2", "é‚®æ”¿é“¶è¡Œ");
+		banks[3] = new BasicData("3", "å·¥å•†é“¶è¡Œ");
+		banks[4] = new BasicData("4", "å»ºè®¾é“¶è¡Œ");
+		banks[5] = new BasicData("5", "äº¤é€šé“¶è¡Œ");
+		banks[6] = new BasicData("6", "ä¸­å›½é“¶è¡Œ");
+		banks[7] = new BasicData("7", "å…¶ä»–");
+		
+		goodNomalBad[0] = new BasicData("0", "å¥½");
+		goodNomalBad[1] = new BasicData("1", "ä¸€èˆ¬");
+		goodNomalBad[2] = new BasicData("0", "å·®");
+		
+		yesNo[0] = new BasicData("0", "æ˜¯");
+		yesNo[1] = new BasicData("1", "å¦");
 	}
 	
 	public static BasicDataService getInstant(){
@@ -87,4 +104,109 @@ public class BasicDataService {
 		return null;
 	}
 
+	public BasicData[] getOldPeople(){
+		return goodNomalBad;
+	}
+	
+	public BasicData getGoodNomalBadByCode(String code){
+		for(BasicData bd : goodNomalBad){
+			if(bd.getCode().equals(code)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public BasicData getGoodNomalBadByName(String name){
+		for(BasicData bd : goodNomalBad){
+			if(bd.getName().equals(name)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public String getGoodNomalBadText(BasicData bd){
+		return getShowText(goodNomalBad, bd);
+	}
+	
+	public String getGNBTextByName(String name){
+		return getGoodNomalBadText(getGoodNomalBadByName(name));
+	}
+	
+	public BasicData getYesNoByName(String name){
+		for(BasicData bd : yesNo){
+			if(bd.getName().equals(name)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public BasicData getYesNoByCode(String code){
+		for(BasicData bd : yesNo){
+			if(bd.getCode().equals(code)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public String getYesNoText(BasicData bd){
+		return getShowText(yesNo, bd);
+	}
+	
+	public String getYesNoTextByName(String name){
+		return getYesNoText(getYesNoByName(name));
+	}
+	
+	public String getYesNoTextByCode(String code){
+		return getYesNoText(getYesNoByCode(code));
+	}
+	
+	public BasicData getPublicGoodByCode(String code){
+		for(BasicData bd : publicGood){
+			if(bd.getCode().equals(code)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public BasicData getPublidGoodByName(String name){
+		for(BasicData bd : publicGood){
+			if(bd.getName().equals(name)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	private String getShowText(BasicData[] source, BasicData checkData){
+		String result = "";
+		for(BasicData b : source){
+			if(b == checkData){
+				result += checkChar;
+			}else{
+				result += unCheckChar;
+			}
+			result += b.getName();
+			
+			result += "  ";
+		}
+		
+		return result;
+	}
+	
+	public String getPublicGoodText(BasicData bd){
+		return getShowText(publicGood, bd);
+	}
+	
+	public String getPublicGoodTextByCode(String code){
+		return getPublicGoodText(getPublicGoodByCode(code));
+	}
+	
+	public String getPublicGoodTextByName(String name){
+		return getPublicGoodText(getBankByName(name));
+	}
 }

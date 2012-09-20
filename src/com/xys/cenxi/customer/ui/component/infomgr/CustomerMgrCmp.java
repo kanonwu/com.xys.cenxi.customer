@@ -24,6 +24,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import com.xys.cenxi.customer.data.CustomerService;
 import com.xys.cenxi.customer.data.query.CustomerQueryKey;
 import com.xys.cenxi.customer.data.query.PagerInfo;
+import com.xys.cenxi.customer.exception.CusException;
 import com.xys.cenxi.customer.msg.CustomerSelectMsg;
 import com.xys.cenxi.customer.msg.RefreshCustomerTableMsg;
 import com.xys.cenxi.customer.pojo.Customer;
@@ -904,8 +905,12 @@ public class CustomerMgrCmp extends Composite {
 		if(filePath == null || filePath.length() < 1){
 			return;
 		}
-		CustomToExcel exporter = new CustomToExcel(filePath);
-		exporter.writeExcel(theCus);
+		try{
+			CustomToExcel exporter = new CustomToExcel(filePath);
+			exporter.writeExcel(theCus);
+		}catch (CusException e) {
+			UIUtil.showMessage(e.getMessage());
+		}
 	}
 
 	protected void doDelete() {
