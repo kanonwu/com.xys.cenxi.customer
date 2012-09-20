@@ -1767,8 +1767,13 @@ public class RatingDetailCmp extends Composite {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			Rating rate = (Rating) e.widget.getData();
-			int newValue = getValue((Combo) e.widget);
-			rate.setRateValue(newValue);
+			Combo cb = (Combo) e.widget;
+			if(Util.isEmpty(cb.getText())){
+				rate.setRateValue(null);
+			}else{
+				int newValue = getValue(cb);
+				rate.setRateValue(newValue);
+			}
 			int total = calFirstTotalValue();
 			cpTotal.setText(String.valueOf(total));
 		}
@@ -1787,8 +1792,13 @@ public class RatingDetailCmp extends Composite {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			Rating rate = (Rating) e.widget.getData();
-			int newValue = getValue((Combo) e.widget);
-			rate.setRateValue(newValue);
+			Combo cb = (Combo) e.widget;
+			if(Util.isEmpty(cb.getText())){
+				rate.setRateValue(null);
+			}else{
+				int newValue = getValue(cb);
+				rate.setRateValue(newValue);
+			}
 			int total = calSecondTotalValue();
 			fpTotal.setText(String.valueOf(total));
 		}
