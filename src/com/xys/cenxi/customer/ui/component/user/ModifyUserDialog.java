@@ -2,15 +2,13 @@ package com.xys.cenxi.customer.ui.component.user;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.layout.GridData;
 
 import com.xys.cenxi.customer.data.UserService;
 import com.xys.cenxi.customer.pojo.User;
@@ -30,7 +28,7 @@ public class ModifyUserDialog extends Dialog {
 	 */
 	public ModifyUserDialog(Shell parentShell) {
 		super(parentShell);
-		setShellStyle(SWT.CLOSE);
+		setShellStyle(SWT.CLOSE | SWT.TITLE | SWT.APPLICATION_MODAL);
 	}
 
 	/**
@@ -40,59 +38,35 @@ public class ModifyUserDialog extends Dialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
-		container.setLayout(new GridLayout(6, false));
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
+		container.setLayout(null);
 		
 		Label label = new Label(container, SWT.NONE);
-		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label.setBounds(133, 30, 48, 17);
 		label.setText("\u65E7\u7528\u6237\uFF1A");
 		
 		textOldName = new Text(container, SWT.BORDER | SWT.READ_ONLY);
-		GridData gd_textOldName = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_textOldName.widthHint = 148;
-		textOldName.setLayoutData(gd_textOldName);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
+		textOldName.setBounds(186, 27, 157, 23);
 		
 		Label label_1 = new Label(container, SWT.NONE);
-		label_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_1.setBounds(133, 58, 48, 17);
 		label_1.setText("\u65B0\u7528\u6237\uFF1A");
 		
 		textName = new Text(container, SWT.BORDER);
-		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
+		textName.setBounds(186, 55, 157, 23);
 		
 		Label label_2 = new Label(container, SWT.NONE);
-		label_2.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_2.setBounds(145, 86, 36, 17);
 		label_2.setText("\u5BC6\u7801\uFF1A");
 		
 		textPw = new Text(container, SWT.BORDER | SWT.PASSWORD);
-		textPw.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
-		new Label(container, SWT.NONE);
+		textPw.setBounds(186, 83, 157, 23);
 		
 		Label label_3 = new Label(container, SWT.NONE);
-		label_3.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_3.setBounds(121, 114, 60, 17);
 		label_3.setText("\u518D\u8F93\u4E00\u6B21\uFF1A");
 		
 		textPw2 = new Text(container, SWT.BORDER | SWT.PASSWORD);
-		textPw2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		textPw2.setBounds(186, 111, 157, 23);
 
 		initUser();
 		return container;
@@ -101,6 +75,7 @@ public class ModifyUserDialog extends Dialog {
 	private void initUser() {
 		user = Content.getUser();
 		setUser(user);
+		getShell().setText("修改用户名密码");
 	}
 
 	/**
