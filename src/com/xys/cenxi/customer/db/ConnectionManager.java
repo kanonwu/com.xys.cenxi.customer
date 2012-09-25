@@ -31,7 +31,8 @@ public class ConnectionManager {
 	 * @throws ProxoolException
 	 */
 	public static void initDBConnectionProvider(){
-		connProvider = new HsqlConnectionProvider();
+//		connProvider = new HsqlConnectionProvider();
+		connProvider = new MysqlConnectionProvider();
 		connProvider.start();
 	}
 	

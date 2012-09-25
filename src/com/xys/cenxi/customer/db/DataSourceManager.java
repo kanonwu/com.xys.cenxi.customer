@@ -16,6 +16,7 @@ public class DataSourceManager {
 	private static DataSource ds;
 	
 	private static String driver = "org.hsqldb.jdbcDriver";
+//	private static String driver = "org.gjt.mm.mysql.Driver";
 	
 	private static Dao dao;
 	
@@ -31,6 +32,7 @@ public class DataSourceManager {
 	       //得到数据库文件夹路径
         String databasePath = Util.getDatabaseDir();
         String serverURL = "jdbc:hsqldb:" + databasePath + File.separator + Util.DB_NAME;
+//        String serverURL = "jdbc:mysql://localhost:3306/nnhfarmer";
         pds.setDriver(driver);
         pds.setDriverUrl(serverURL);
         pds.setMaximumConnectionCount(10);
@@ -38,6 +40,8 @@ public class DataSourceManager {
         pds.setMaximumConnectionLifetime(43200000);
         pds.setUser("sa");
         pds.setPassword("");
+//        pds.setUser("root");
+//        pds.setPassword("root");
         ds = pds;
         dao = new NutDao(ds);
 		return ds;

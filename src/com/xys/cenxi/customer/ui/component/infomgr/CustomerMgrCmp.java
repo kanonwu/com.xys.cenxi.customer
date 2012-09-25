@@ -877,7 +877,6 @@ public class CustomerMgrCmp extends Composite {
 			
 			@Override
 			public void pageChanged(PageChangedEvent e) {
-				// TODO Auto-generated method stub
 				if(queryKey == null || queryKey.pagerInfo == null){
 					return;
 				}
@@ -892,7 +891,6 @@ public class CustomerMgrCmp extends Composite {
 	}
 	
 	protected void doExport() {
-		// TODO Auto-generated method stub
 		List<Customer> checkedCus = customTableCmp.getChecked();
 		if(checkedCus.isEmpty())
 			return;

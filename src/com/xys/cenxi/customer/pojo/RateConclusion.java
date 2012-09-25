@@ -37,10 +37,6 @@ public class RateConclusion implements Serializable{
 	
 	private Integer secondValue;
 	
-	private Integer firstLevel;
-	
-	private Integer secondLevel;
-
 	public String getRowID() {
 		return rowID;
 	}
@@ -121,20 +117,4 @@ public class RateConclusion implements Serializable{
 		this.secondValue = secondValue;
 	}
 
-	public Integer getFirstLevel() {
-		return firstLevel;
-	}
-
-	public void setFirstLevel(Integer firstLevel) {
-		this.firstLevel = firstLevel;
-	}
-
-	public Integer getSecondLevel() {
-		return secondLevel;
-	}
-
-	public void setSecondLevel(Integer secondLevel) {
-		this.secondLevel = secondLevel;
-	}
-	
 }

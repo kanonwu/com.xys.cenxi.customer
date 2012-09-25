@@ -47,6 +47,11 @@ public class Util {
 	 * 正则：正整数
 	 */
 	public static final Pattern P_DIGITAL = Pattern.compile("^[1-9][0-9]*$");
+	
+	/**
+	 * 非父整数
+	 */
+	public static final Pattern P_INTEGER = Pattern.compile("^[1-9]\\d*|0$");
 
 	/**
 	 * 正整数和正浮点数
@@ -197,7 +202,7 @@ public class Util {
 			return true;
 		}
 		
-		Matcher matcher = P_DIGITAL.matcher(str);
+		Matcher matcher = P_INTEGER.matcher(str);
 		if(matcher.find()){
 			return true;
 		}

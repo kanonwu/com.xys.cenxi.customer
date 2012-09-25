@@ -1570,6 +1570,17 @@ public class RatingDetailCmp extends Composite {
 		}
 		con.setSecondDate(UIUtil.getDate(fpDate));
 		
+		if(!Util.isEmpty(cpTotal.getText())){
+			con.setFirstValue(Integer.valueOf(cpTotal.getText()));
+		}else{
+			con.setFirstValue(null);
+		}
+		if(!Util.isEmpty(fpTotal.getText())){
+			con.setSecondValue(Integer.valueOf(fpTotal.getText()));
+		}else{
+			con.setSecondValue(null);
+		}
+		
 		return con;
 	}
 
@@ -1640,31 +1651,13 @@ public class RatingDetailCmp extends Composite {
 	}
 	
 	private void setFirstLevel(int value){
-		if(value >= 80){
-			cpLevel.setText(RatingService.YOU_XIU);
-		}else if(value >= 70){
-			cpLevel.setText(RatingService.LIANG_HAO);
-		}else if(value >= 60){
-			cpLevel.setText(RatingService.YI_BAN);
-		}else if(value > 1){
-			cpLevel.setText(RatingService.JIAO_CHA);
-		}else{
-			cpLevel.setText("");
-		}
+		String level = RatingService.getInstance().getLevelLabel(value);
+		cpLevel.setText(level);
 	}
 	
 	private void setSecondLevel(int value){
-		if(value >= 80){
-			fpLevel.setText(RatingService.YOU_XIU);
-		}else if(value >= 70){
-			fpLevel.setText(RatingService.LIANG_HAO);
-		}else if(value >= 60){
-			fpLevel.setText(RatingService.YI_BAN);
-		}else if(value > 1){
-			fpLevel.setText(RatingService.JIAO_CHA);
-		}else{
-			fpLevel.setText("");
-		}
+		String level = RatingService.getInstance().getLevelLabel(value);
+		fpLevel.setText(level);
 	}
 	
 	private int calFirstTotalValue(){

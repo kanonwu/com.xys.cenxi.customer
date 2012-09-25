@@ -7,6 +7,7 @@ import com.hexapixel.widgets.ribbon.RibbonGroup;
 import com.hexapixel.widgets.ribbon.RibbonTab;
 import com.hexapixel.widgets.ribbon.RibbonTabFolder;
 import com.xys.cenxi.customer.ui.ribbon.action.CustomerMgrAction;
+import com.xys.cenxi.customer.ui.ribbon.action.QueryRateAction;
 
 public class CustomerInfoTab {
 	
@@ -18,15 +19,13 @@ public class CustomerInfoTab {
 	
 	private RibbonGroup rgFarmerInfo;
 	
-//	private RibbonButtonGroup rbgFarmerInfo;
-	
 	private RibbonButton rbFarmerInfo;
 	
-//	private RibbonGroup rgOtherInfo;
+	private RibbonGroup rgRate;
 	
-//	private RibbonButtonGroup rbgOther;
+//	private RibbonButtonGroup rbgRate;
 	
-//	private RibbonButton rbOther;
+	private RibbonButton rbRateQuery;
 	
 	public CustomerInfoTab(RibbonTabFolder parent) {
 		this.parent = parent;
@@ -39,14 +38,16 @@ public class CustomerInfoTab {
 		rbFarmerInfo = new RibbonButton(rgFarmerInfo, SWTResourceManager.getImage(CustomerInfoTab.class, "/icons/customer_info.png"),
 				"农户信息", RibbonButton.STYLE_NO_DEPRESS);
 		
-//		rgOtherInfo = new RibbonGroup(rtCustom, "非农户信息");
-////		rbgOther = new RibbonButtonGroup(rgOtherInfo);
-//		rbOther = new RibbonButton(rgOtherInfo, null, "非农户信息", RibbonButton.STYLE_NO_DEPRESS);
+		rgRate = new RibbonGroup(rtCustom, "评分查询");
+//		rbgRate = new RibbonButtonGroup(rgRate);
+		rbRateQuery = new RibbonButton(rgRate, SWTResourceManager.getImage(CustomerInfoTab.class, "/icons/rate_query.png"),
+				"评分结果查询", RibbonButton.STYLE_NO_DEPRESS);
 		
 		initAction();
 	}
 
 	private void initAction(){
 		rbFarmerInfo.addSelectionListener(new CustomerMgrAction());
+		rbRateQuery.addSelectionListener(new QueryRateAction());
 	}
 }

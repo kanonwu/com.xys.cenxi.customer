@@ -3,10 +3,13 @@ package com.xys.cenxi.customer.util;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+
+import com.xys.cenxi.customer.pojo.basic.BasicData;
 
 public class UIUtil {
 
@@ -29,5 +32,14 @@ public class UIUtil {
 		cal.set(dt.getYear(), dt.getMonth(), dt.getDay());
 		
 		return cal.getTime();
+	}
+	
+	public static void setData(BasicData bd[], Combo cb, boolean beginNull){
+		if(beginNull){
+			cb.add("");
+		}
+		for(BasicData b : bd){
+			cb.add(b.getName());
+		}
 	}
 }

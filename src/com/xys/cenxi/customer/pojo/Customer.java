@@ -56,7 +56,7 @@ public class Customer implements Serializable{
 	private String jobCode;
 	
 	private String bankCode;
-
+	
 	public String getRowID() {
 		return rowID;
 	}
@@ -216,6 +216,5 @@ public class Customer implements Serializable{
 	public void setBankCode(String bankCode) {
 		this.bankCode = bankCode;
 	}
-	
-	
+
 }

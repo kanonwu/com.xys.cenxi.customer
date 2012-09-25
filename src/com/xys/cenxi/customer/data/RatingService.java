@@ -1,20 +1,32 @@
 package com.xys.cenxi.customer.data;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
+import org.nutz.dao.sql.Criteria;
+import org.nutz.dao.sql.Sql;
+import org.nutz.dao.sql.SqlCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xys.cenxi.customer.data.query.QueryRateResultKey;
 import com.xys.cenxi.customer.db.DataSourceManager;
 import com.xys.cenxi.customer.pojo.RateConclusion;
 import com.xys.cenxi.customer.pojo.RateResult;
 import com.xys.cenxi.customer.pojo.Rating;
+import com.xys.cenxi.customer.pojo.Regional;
+import com.xys.cenxi.customer.pojo.basic.BasicData;
+import com.xys.cenxi.customer.pojo.query.QRateResultInfo;
 import com.xys.cenxi.customer.start.Content;
 import com.xys.cenxi.customer.util.OrderGenerator;
+import com.xys.cenxi.customer.util.Util;
 
 public class RatingService {
 	
@@ -30,13 +42,7 @@ public class RatingService {
 	 */
 	public static Integer RATE_TYPE_SECOND = 1;
 	
-	public static final String YOU_XIU = "优秀";
-	
-	public static final String LIANG_HAO = "良好";
-	
-	public static final String YI_BAN = "一般";
-	
-	public static final String JIAO_CHA = "较差";
+	private static BasicData[] LEVELS = new BasicData[4];
 	
 	private static RatingService service;
 	
@@ -46,7 +52,14 @@ public class RatingService {
 	public static final int ITEM_SIZE = 18;
 	
 	private RatingService(){
-		
+		LEVELS[0] = new BasicData("1", "优秀");
+		LEVELS[0].setValue("80");
+		LEVELS[1] = new BasicData("2", "良好");
+		LEVELS[1].setValue("70");
+		LEVELS[2] = new BasicData("3", "一般");
+		LEVELS[2].setValue("60");
+		LEVELS[3] = new BasicData("4", "较差");
+		LEVELS[3].setValue("60");
 	}
 	
 	public static RatingService getInstance(){
@@ -55,6 +68,50 @@ public class RatingService {
 		}
 		
 		return service;
+	}
+	
+	public BasicData[] getRatingLevels(){
+		return LEVELS;
+	}
+	
+	public String getLevelLabel(int value){
+		if(value >= 80){
+			return LEVELS[0].getName();
+		}else if(value >= 70){
+			return LEVELS[1].getName();
+		}else if(value >= 60){
+			return LEVELS[2].getName();
+		}else if(value > 1){
+			return LEVELS[3].getName();
+		}else{
+			return "";
+		}
+	}
+	
+	public int[] getRange(String levelName){
+		int[] result = new int[2];
+		result[0] = 0;
+		result[1] = 104;
+		if(Util.isEmpty(levelName)){
+			return result;
+		}
+		for(BasicData bd : LEVELS){
+			if(bd.getName().equals(levelName)){
+				if(bd.getCode().equals("1")){
+					result[0] = 80;
+				}else if(bd.getCode().equals("2")){
+					result[0] = 70;
+					result[1] = 80;
+				}else if(bd.getCode().equals("3")){
+					result[0] = 60;
+					result[1] = 70;
+				}else if(bd.getCode().equals("4")){
+					result[0] = 0;
+					result[1] = 60;
+				}
+			}
+		}
+		return result;
 	}
 	
 	public Rating add(Rating fa){
@@ -217,6 +274,102 @@ public class RatingService {
 		for(RateConclusion rc : cons){
 			add(rc);
 		}
+	}
+	
+	private Criteria getCri(QueryRateResultKey key){
+		Criteria cri = Cnd.cri();
+		if(!Util.isEmpty(key.name)){
+//			cri.where().and("c.name", "", "");
+			cri.where().andLike("c.name", key.name);
+		}
+		if(!Util.isEmpty(key.archivesID)){
+			cri.where().andLike("c.archivesID", key.archivesID);
+		}
+		if(!Util.isEmpty(key.regional)){
+			cri.where().andLike("c.regional", Util.removeRightZero(key.regional));
+		}
+		if(key.firstValueFrom != null){
+			cri.where().andGTE("r.firstValue", key.firstValueFrom);
+		}
+		if(key.firstValueTo != null){
+			cri.where().andLT("r.firstValue", key.firstValueTo);
+		}
+		if(key.secondValueFrom != null){
+			cri.where().andGTE("r.secondValue", key.secondValueFrom);
+		}
+		if(key.secondValueTo != null){
+			cri.where().andLT("r.secondValue", key.secondValueTo);
+		}
+		
+		return cri;
+	}
+	
+	/**
+	 * 查询评分结果
+	 * @param key
+	 * @return
+	 */
+	public List<QRateResultInfo> query(final QueryRateResultKey key){
+		Dao dao = DataSourceManager.getDao();
+		Sql sql = null;
+		sql = Sqls.create("select c.archivesID , c.name, c.identify, c.regional, r.firstValue, r.secondValue from t_customer c join t_rateConclusion r  on c.rowID = r.ownerID  $condition ");
+		Criteria cri = Cnd.cri();
+		cri = getCri(key);
+		
+		cri.getOrderBy().asc("c.archivesID");
+		
+		sql.setCondition(cri);
+		if(key.pagerInfo != null){
+			sql.setPager(key.pagerInfo);
+		}
+		final List<QRateResultInfo> result = new ArrayList<QRateResultInfo>();
+		sql.setCallback(new SqlCallback() {
+			
+			@Override
+			public Object invoke(Connection conn, ResultSet rs, Sql sql)
+					throws SQLException {
+				while(rs.next()){
+					QRateResultInfo rate = new QRateResultInfo();
+					rate.archivesID = rs.getString(1);
+					rate.name = rs.getString(2);
+					rate.identify = rs.getString(3);
+					String regionalCode = rs.getString(4);
+					Regional re = RegionalService.getInstance().getRegionalByCode(regionalCode);
+					if(re != null){
+						rate.regional = re.getName();
+					}
+					rate.firstValue = rs.getInt(5);
+					if(rate.firstValue != null){
+						rate.firstLevel = getLevelLabel(rate.firstValue);
+					}
+					rate.secondValue = rs.getInt(6);
+					if(rate.secondValue != null){
+						rate.secondLevel = getLevelLabel(rate.secondValue);
+					}
+					
+					result.add(rate);
+				}
+				return null;
+			}
+		});
+		dao.execute(sql);
+		Sql countSql = Sqls.create("select count(*) from t_customer c join t_rateConclusion r on c.rowID = r.ownerID  $condition ");
+		cri = getCri(key);
+		countSql.setCondition(cri);
+		
+		countSql.setCallback(new SqlCallback() {
+			
+			@Override
+			public Object invoke(Connection conn, ResultSet rs, Sql sql)
+					throws SQLException {
+				if(rs.next()){
+					key.pagerInfo.setRecordCount(rs.getInt(1));
+				}
+				return null;
+			}
+		});
+		dao.execute(countSql);
+		return result;
 	}
 	
 }
