@@ -1,5 +1,11 @@
 package com.xys.cenxi.customer.ui.component.query;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -8,16 +14,27 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import com.xys.cenxi.customer.data.RatingService;
 import com.xys.cenxi.customer.data.query.PagerInfo;
 import com.xys.cenxi.customer.data.query.QueryRateResultKey;
+import com.xys.cenxi.customer.exception.CusException;
+import com.xys.cenxi.customer.pojo.query.QRateResultInfo;
 import com.xys.cenxi.customer.ui.pagination.PageChangedEvent;
 import com.xys.cenxi.customer.ui.pagination.PageChangedListener;
 import com.xys.cenxi.customer.ui.pagination.PagerBar;
+import com.xys.cenxi.customer.util.UIUtil;
+import com.xys.cenxi.customer.util.Util;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QRatingResultMgrCmp extends Composite {
 	
@@ -66,8 +83,18 @@ public class QRatingResultMgrCmp extends Composite {
 		ratingResultTableCmp.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		
 		Group group = new Group(composite_1, SWT.NONE);
-		group.setLayout(new GridLayout(1, false));
+		group.setLayout(new GridLayout(2, false));
 		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		
+		Button btnExport = new Button(group, SWT.NONE);
+		btnExport.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				doExport();
+			}
+		});
+		btnExport.setImage(SWTResourceManager.getImage(QRatingResultMgrCmp.class, "/icons/export.gif"));
+		btnExport.setText("\u5BFC\u51FA");
 		
 		pagerBar = new PagerBar(group, PagerBar.GOOGLE_STYLE, 0, 30, 1);
 		pagerBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -83,6 +110,42 @@ public class QRatingResultMgrCmp extends Composite {
 
 	}
 	
+	protected void doExport() {
+		//打开文件对话框
+		FileDialog fd = new FileDialog(Display.getDefault().getActiveShell(), SWT.SAVE);
+		fd.setText("保存文件");
+		Date time = new Date();
+		String fileName = "评分结果" + Util.DATETIME_SDF2.format(time);
+		fileName += ".xls";
+		fd.setFileName(fileName);
+		String filePath = fd.open();
+		if(filePath == null || filePath.length() < 2){
+			return;
+		}
+		FileOutputStream fos = null;
+
+		try {
+			fos = new FileOutputStream(filePath);
+			QueryRateResultKey key = queryRatingResultCndCmp.getQueryKey();
+			List<QRateResultInfo> data = RatingService.getInstance().query(key);
+			RatingService.getInstance().export(data, fos);
+			UIUtil.showMessage("导出完成，导出文件保存到：" + filePath);
+		} catch (FileNotFoundException e) {
+			log.error("导出评分结果失败：", e);
+			UIUtil.showMessage("导出评分结果出错：" + e.getMessage());
+		}catch(CusException e){
+			log.error("导出评分结果失败：", e);
+			UIUtil.showMessage("导出评分结果出错：" + e.getMessage());
+		}finally{
+			try {
+				fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.error("关闭输出流出错", e);
+			}
+		}
+	}
+
 	protected void doQuery() {
 		PagerInfo info = new PagerInfo();
 		info.setPageNumber(1);
@@ -100,6 +163,8 @@ public class QRatingResultMgrCmp extends Composite {
 	private Button btnQuery;
 	
 	private static int PAGE_SIZE = 30;
+	
+	private static Logger log = LoggerFactory.getLogger(QRatingResultMgrCmp.class);
 
 	protected void pageChange(int pageIndex) {
 		if(queryKey == null || queryKey.pagerInfo == null){

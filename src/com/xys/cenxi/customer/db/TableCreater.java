@@ -1,7 +1,5 @@
 package com.xys.cenxi.customer.db;
 
-import java.io.File;
-
 import org.nutz.dao.Dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +55,14 @@ public class TableCreater {
 		if(!dao.exists(Regional.class)){
 			dao.create(Regional.class, true);
 			try {
-				RegionalService.getInstance().loadRegionalFromFile(new File("regional.xls"));
+				RegionalService.getInstance().loadRegionalFromFile();
 			} catch (Exception e) {
 				e.printStackTrace();
 				logger.error("导入行政区划数据出错：", e);
 			}
+		}else{
+			//重新加载行政区划
+			RegionalService.getInstance().reloadRegionalFromFile();
 		}
 		
 		if(!dao.exists(User.class)){

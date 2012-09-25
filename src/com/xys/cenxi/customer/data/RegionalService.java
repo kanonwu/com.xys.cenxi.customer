@@ -23,6 +23,8 @@ public class RegionalService {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(RegionalService.class);
+	
+	private static final String regionalFile = "regional.xls";
 
 	private static RegionalService service;
 
@@ -83,13 +85,30 @@ public class RegionalService {
 			}
 		}
 	}
+	
+	public void reloadRegionalFromFile(){
+		Regional re = getRegionalByCode("45048110000000");
+		if(re != null && re.getName().equals("岑城镇")){
+			logger.warn("重新加载行政区划数据。");
+			//重新加载行政区划
+			Dao dao = DataSourceManager.getDao();
+			dao.create(Regional.class, true);
+			try {
+				loadRegionalFromFile();
+			} catch (Exception e) {
+				logger.error("加载行政区划数据失败：", e);
+			}
+		}
+	}
 
-	public void loadRegionalFromFile(File file) throws Exception {
+	public void loadRegionalFromFile() throws Exception {
+		File file = new  File(regionalFile);
 		Workbook excel = Workbook.getWorkbook(file);
 		Sheet sheet = excel.getSheet(0);
 		if (sheet == null) {
 			logger.warn("Excel文件没有数据。");
 		}
+		//45048110000000 岑城镇
 		Regional cenxi = new Regional();
 		cenxi.setName("岑溪市");
 		cenxi.setRegionalCode("45048100000000");
