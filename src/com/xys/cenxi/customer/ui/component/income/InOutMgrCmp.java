@@ -74,6 +74,20 @@ public class InOutMgrCmp extends Composite {
 		gd_group_2.heightHint = 303;
 		group_2.setLayoutData(gd_group_2);
 		
+		composite_7 = new Composite(group_2, SWT.NONE);
+		composite_7.setLayout(new GridLayout(2, false));
+		composite_7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		
+		Label label_8 = new Label(composite_7, SWT.NONE);
+		label_8.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_8.setBounds(0, 0, 61, 17);
+		label_8.setText("\u4E3B\u8981\u4ECE\u4E8B\u884C\u4E1A\uFF1A");
+		
+		textMainProfesion = new Text(composite_7, SWT.BORDER);
+		GridData gd_textMainProfesion = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
+		gd_textMainProfesion.widthHint = 266;
+		textMainProfesion.setLayoutData(gd_textMainProfesion);
+		
 		group_1 = new Group(group_2, SWT.NONE);
 		group_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		group_1.setText("\u79CD\u517B\u6536\u5165");
@@ -172,7 +186,7 @@ public class InOutMgrCmp extends Composite {
 		
 		group = new Group(group_2, SWT.NONE);
 		group.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		group.setLayout(new GridLayout(5, false));
+		group.setLayout(new GridLayout(7, false));
 		group.setText("\u5176\u4ED6\u6536\u5165");
 		
 		label = new Label(group, SWT.NONE);
@@ -207,6 +221,13 @@ public class InOutMgrCmp extends Composite {
 		GridData gd_textOtherIncome = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_textOtherIncome.widthHint = 90;
 		textOtherIncome.setLayoutData(gd_textOtherIncome);
+		
+		Label label_9 = new Label(group, SWT.NONE);
+		label_9.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_9.setText("\u5907\u6CE8\uFF1A");
+		
+		textOtherIncomDesc = new Text(group, SWT.BORDER);
+		textOtherIncomDesc.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		composite_5 = new Composite(group_2, SWT.NONE);
 		composite_5.setLayout(new GridLayout(4, false));
@@ -504,6 +525,9 @@ public class InOutMgrCmp extends Composite {
 	private OtherIncome otherIncome;
 	
 	private FamilyOutput output;
+	private Composite composite_7;
+	private Text textMainProfesion;
+	private Text textOtherIncomDesc;
 	
 	private OtherIncome getOtherIncome(){
 		if(customer == null)
@@ -521,6 +545,17 @@ public class InOutMgrCmp extends Composite {
 			otherIncome.setOtherIncome(Float.valueOf(textOtherIncome.getText()));
 		}else{
 			otherIncome.setOtherIncome(null);
+		}
+		
+		if(!Util.isEmpty(textMainProfesion.getText())){
+			otherIncome.setMainBusiness(textMainProfesion.getText());
+		}else{
+			otherIncome.setMainBusiness(null);
+		}
+		if(!Util.isEmpty(textOtherIncomDesc.getText())){
+			otherIncome.setDescription(textOtherIncomDesc.getText());
+		}else{
+			otherIncome.setDescription(textOtherIncomDesc.getText());
 		}
 		
 		return this.otherIncome;
@@ -558,6 +593,7 @@ public class InOutMgrCmp extends Composite {
 		if(this.otherIncome == null){
 			textWorkIncome.setText("");
 			textOtherIncome.setText("");
+			textMainProfesion.setText("");
 		}else{
 			if(this.otherIncome.getWorkIncome() != null){
 				textWorkIncome.setText(otherIncome.getWorkIncome().toString());
@@ -568,6 +604,16 @@ public class InOutMgrCmp extends Composite {
 				textOtherIncome.setText(otherIncome.getOtherIncome().toString());
 			}else{
 				textOtherIncome.setText("");
+			}
+			if(otherIncome.getMainBusiness() != null){
+				textMainProfesion.setText(otherIncome.getMainBusiness());
+			}else{
+				textMainProfesion.setText("");
+			}
+			if(otherIncome.getDescription() != null){
+				textOtherIncomDesc.setText(otherIncome.getDescription());
+			}else{
+				textOtherIncomDesc.setText("");
 			}
 		}
 	}

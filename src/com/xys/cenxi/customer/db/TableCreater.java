@@ -4,8 +4,10 @@ import org.nutz.dao.Dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xys.cenxi.customer.data.CredidtService;
 import com.xys.cenxi.customer.data.CustomerService;
 import com.xys.cenxi.customer.data.FamilyService;
+import com.xys.cenxi.customer.data.IncomeService;
 import com.xys.cenxi.customer.data.RegionalService;
 import com.xys.cenxi.customer.data.UserService;
 import com.xys.cenxi.customer.pojo.Credidt;
@@ -18,6 +20,7 @@ import com.xys.cenxi.customer.pojo.FarmMachine;
 import com.xys.cenxi.customer.pojo.ForestRights;
 import com.xys.cenxi.customer.pojo.Housing;
 import com.xys.cenxi.customer.pojo.OtherIncome;
+import com.xys.cenxi.customer.pojo.PingYiResult;
 import com.xys.cenxi.customer.pojo.RateConclusion;
 import com.xys.cenxi.customer.pojo.Rating;
 import com.xys.cenxi.customer.pojo.Regional;
@@ -78,10 +81,14 @@ public class TableCreater {
 		
 		dao.create(Rating.class, dropTable);
 		dao.create(RateConclusion.class, dropTable);
+		dao.create(PingYiResult.class, dropTable);
+		
 		
 		//修改表结构
 		CustomerService.getService().doStructureChange();
 		FamilyService.getInstance().doStructureChange();
+		IncomeService.getInstance().doOtherIncomeStructureChange();
+		CredidtService.getInstance().doStructureChange();
 	}
 	
 }

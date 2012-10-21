@@ -22,6 +22,13 @@ public class OtherIncome implements Serializable {
 	private Float workIncome;
 	
 	private Float otherIncome;
+	
+	/**
+	 * 主要从事的经营行业
+	 */
+	private String mainBusiness;
+	
+	private String description;
 
 	public String getRowID() {
 		return rowID;
@@ -53,5 +60,21 @@ public class OtherIncome implements Serializable {
 
 	public void setOtherIncome(Float otherIncome) {
 		this.otherIncome = otherIncome;
+	}
+
+	public String getMainBusiness() {
+		return mainBusiness;
+	}
+
+	public void setMainBusiness(String mainBusiness) {
+		this.mainBusiness = mainBusiness;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

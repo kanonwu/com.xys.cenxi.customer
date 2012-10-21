@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.xys.cenxi.customer.db.DataSourceManager;
 import com.xys.cenxi.customer.pojo.FamilyOutput;
@@ -15,6 +17,8 @@ import com.xys.cenxi.customer.util.OrderGenerator;
 public class IncomeService {
 	
 	private static IncomeService service;
+	
+	private static final Logger log = LoggerFactory.getLogger(IncomeService.class);
 	
 	private IncomeService(){
 	}
@@ -179,6 +183,17 @@ public class IncomeService {
 			add(oi);
 		}
 	}
+
+	/**
+	 * 不检查重复
+	 * @param ois
+	 */
+	public void addAllOtherIncome(List<OtherIncome> ois){
+		Dao dao = DataSourceManager.getDao();
+		for(OtherIncome oi : ois){
+			dao.insert(oi);
+		}
+	}
 	
 	public FamilyOutput add(FamilyOutput output){
 		Dao dao = DataSourceManager.getDao();
@@ -247,5 +262,38 @@ public class IncomeService {
 		}
 		
 		return BigDecimal.valueOf(result);
+	}
+	
+	public void doOtherIncomeStructureChange(){
+		if(!isOtherIncomeStructureChange()){
+			return;
+		}
+		log.warn("表结构发生改变，需要重建表。");
+		
+		//先把数据查询出来
+		log.info("查出全部数据");
+		List<OtherIncome> data = getAllOtherIncome();
+		//重新建表
+		log.info("重建表");
+		Dao dao = DataSourceManager.getDao();
+		dao.create(OtherIncome.class, true);
+		//插入数据
+		log.info("重新插入数据");
+		addAllOtherIncome(data);
+		log.warn("表结构修改完成。");
+	}
+	
+	private boolean isOtherIncomeStructureChange(){
+		Dao dao = DataSourceManager.getDao();
+		boolean change = false;
+		try {
+			OtherIncome cus = dao.fetch(OtherIncome.class);
+			dao.update(cus);
+		} catch (Exception e) {
+			//有异常，说明表结构发生改变
+			log.info("表结构发现改变: {}", e);
+			change = true;
+		}
+		return change;
 	}
 }

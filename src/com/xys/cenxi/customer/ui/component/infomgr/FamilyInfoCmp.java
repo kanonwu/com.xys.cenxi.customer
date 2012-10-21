@@ -48,7 +48,6 @@ public class FamilyInfoCmp extends Composite {
 	private Text textAge;
 	private Label lblIdLength;
 	private Combo cbJob;
-	private Combo cbBank;
 
 	/**
 	 * Create the composite.
@@ -194,20 +193,13 @@ public class FamilyInfoCmp extends Composite {
 		
 		Label label_10 = new Label(composite, SWT.NONE);
 		label_10.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_10.setText("\u804C\u4E1A\uFF1A");
+		label_10.setText("\u4ECE\u4E8B\u884C\u4E1A\uFF1A");
 		
 		cbJob = new Combo(composite, SWT.READ_ONLY);
 		cbJob.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(composite, SWT.NONE);
-		
-		Label label_11 = new Label(composite, SWT.NONE);
-		label_11.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_11.setText("\u4E3B\u8981\u5B58\u6B3E\uFF1A");
-		
-		cbBank = new Combo(composite, SWT.READ_ONLY);
-		GridData gd_cbBank = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_cbBank.widthHint = 70;
-		cbBank.setLayoutData(gd_cbBank);
+		new Label(composite, SWT.NONE);
+		new Label(composite, SWT.NONE);
 		new Label(composite, SWT.NONE);
 
 		initInput();
@@ -275,12 +267,10 @@ public class FamilyInfoCmp extends Composite {
 		}
 		cbJob.select(0);
 		//Ö÷Òª´æ¿î
-		BasicData[] banks = BasicDataService.getInstant().getBanks();
-		cbBank.add("");
-		for(BasicData bd : banks){
-			cbBank.add(bd.getName());
-		}
-		cbBank.select(0);
+//		BasicData[] banks = BasicDataService.getInstant().getBanks();
+//		for(BasicData bd : banks){
+//			cbBank.add(bd.getName());
+//		}
 
 	}
 	
@@ -343,12 +333,12 @@ public class FamilyInfoCmp extends Composite {
 			family.setJobCode(null);
 		}
 		
-		if(!Util.isEmpty(cbBank.getText())){
-			BasicData bank = BasicDataService.getInstant().getBankByName(cbBank.getText());
-			family.setBankCode(bank.getCode());
-		}else{
-			family.setBankCode(null);
-		}
+//		if(!Util.isEmpty(cbBank.getText())){
+//			BasicData bank = BasicDataService.getInstant().getBankByName(cbBank.getText());
+//			family.setBankCode(bank.getCode());
+//		}else{
+//			family.setBankCode(null);
+//		}
 		
 		return family;
 	}
@@ -420,16 +410,16 @@ public class FamilyInfoCmp extends Composite {
 			cbJob.setText("");
 		}
 		
-		if(!Util.isEmpty(fa.getBankCode())){
-			BasicData bank = BasicDataService.getInstant().getBankByCode(fa.getBankCode());
-			if(bank != null){
-				cbBank.setText(bank.getName());
-			}else{
-				cbBank.setText("");
-			}
-		}else{
-			cbBank.setText("");
-		}
+//		if(!Util.isEmpty(fa.getBankCode())){
+//			BasicData bank = BasicDataService.getInstant().getBankByCode(fa.getBankCode());
+//			if(bank != null){
+//				cbBank.setText(bank.getName());
+//			}else{
+//				cbBank.setText("");
+//			}
+//		}else{
+//			cbBank.setText("");
+//		}
 		
 		textName.setFocus();
 	}
@@ -446,7 +436,7 @@ public class FamilyInfoCmp extends Composite {
 		dtBirthday.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 		cbHealthy.setSelection(selPoint);
 		cbMarry.setSelection(selPoint);
-		cbBank.setText("");
+//		cbBank.setText("");
 		cbJob.setText("");
 		
 		textName.setFocus();

@@ -43,7 +43,6 @@ public class CustomerCmp extends Composite {
 	private Text textAge;
 	private Text textPhone;
 	private Text textTell;
-	private Text textEmail;
 	private Text textPostcode;
 	private Text textAddress;
 	private Text textDesc;
@@ -61,14 +60,16 @@ public class CustomerCmp extends Composite {
 	 */
 	public CustomerCmp(Composite parent, int style) {
 		super(parent, style);
-		setLayout(new GridLayout(16, false));
+		setLayout(new GridLayout(13, false));
 		
 		Label label = new Label(this, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label.setText("\u6863\u6848\u7F16\u53F7\uFF1A");
 		
 		textArchivesID = new Text(this, SWT.BORDER);
-		textArchivesID.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		GridData gd_textArchivesID = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_textArchivesID.widthHint = 70;
+		textArchivesID.setLayoutData(gd_textArchivesID);
 		
 		Label lblNewLabel = new Label(this, SWT.NONE);
 		lblNewLabel.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
@@ -98,7 +99,9 @@ public class CustomerCmp extends Composite {
 				}
 			}
 		});
-		textIdentify.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		GridData gd_textIdentify = new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1);
+		gd_textIdentify.widthHint = 134;
+		textIdentify.setLayoutData(gd_textIdentify);
 		
 		lblIdentify = new Label(this, SWT.NONE);
 		lblIdentify.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -107,8 +110,7 @@ public class CustomerCmp extends Composite {
 		
 		Label label_2 = new Label(this, SWT.NONE);
 		label_2.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_2.setText("\u59D3\u540D\uFF1A");
-		new Label(this, SWT.NONE);
+		label_2.setText("\u6237\u4E3B\u59D3\u540D\uFF1A");
 		
 		textName = new Text(this, SWT.BORDER);
 		textName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -125,33 +127,20 @@ public class CustomerCmp extends Composite {
 		GridData gd_comboGender = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_comboGender.widthHint = 35;
 		comboGender.setLayoutData(gd_comboGender);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
 		
 		Label label_17 = new Label(this, SWT.NONE);
 		label_17.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_17.setText("\u804C\u4E1A\uFF1A");
+		label_17.setText("\u4ECE\u4E8B\u884C\u4E1A\uFF1A");
 		
 		cbJob = new Combo(this, SWT.READ_ONLY);
-		cbJob.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		GridData gd_cbJob = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_cbJob.widthHint = 50;
+		cbJob.setLayoutData(gd_cbJob);
 		new Label(this, SWT.NONE);
-		
-		Label label_18 = new Label(this, SWT.NONE);
-		label_18.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_18.setText("\u4E3B\u8981\u5B58\u6B3E\uFF1A");
-		
-		cbMainBank = new Combo(this, SWT.READ_ONLY);
-		cbMainBank.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		cbMainBank.select(0);
-		
-		Label lblNewLabel_3 = new Label(this, SWT.NONE);
-		lblNewLabel_3.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		lblNewLabel_3.setText("*");
 		
 		Label label_4 = new Label(this, SWT.NONE);
 		label_4.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_4.setText("\u751F\u65E5\uFF1A");
-		new Label(this, SWT.NONE);
 		
 		dtBirthday = new DateTime(this, SWT.BORDER | SWT.DROP_DOWN | SWT.LONG);
 		dtBirthday.addSelectionListener(new SelectionAdapter() {
@@ -163,17 +152,16 @@ public class CustomerCmp extends Composite {
 		GridData gd_dtBirthday = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_dtBirthday.widthHint = 111;
 		dtBirthday.setLayoutData(gd_dtBirthday);
-		
-		Label lblNewLabel_4 = new Label(this, SWT.NONE);
-		lblNewLabel_4.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		lblNewLabel_4.setText("*");
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
 		
 		Label label_5 = new Label(this, SWT.NONE);
 		label_5.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_5.setText("\u5E74\u9F84\uFF1A");
-		new Label(this, SWT.NONE);
 		
 		textAge = new Text(this, SWT.BORDER);
+		textAge.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		textAge.addVerifyListener(new VerifyListener() {
 			public void verifyText(VerifyEvent e) {
 				//校验购建年份：位数不能超过2位
@@ -185,21 +173,16 @@ public class CustomerCmp extends Composite {
 				}
 			}
 		});
-		
-		Label lblNewLabel_5 = new Label(this, SWT.NONE);
-		lblNewLabel_5.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		lblNewLabel_5.setText("*");
+		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		
 		Label label_6 = new Label(this, SWT.NONE);
 		label_6.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_6.setText("\u5A5A\u59FB\uFF1A");
+		label_6.setText("\u5A5A\u59FB\u72B6\u51B5\uFF1A");
 		
 		comboMarry = new Combo(this, SWT.READ_ONLY);
-		GridData gd_comboMarry = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_comboMarry.widthHint = 72;
-		comboMarry.setLayoutData(gd_comboMarry);
+		comboMarry.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(this, SWT.NONE);
 		
 		Label label_7 = new Label(this, SWT.NONE);
@@ -207,22 +190,68 @@ public class CustomerCmp extends Composite {
 		label_7.setText("\u5065\u5EB7\u72B6\u51B5\uFF1A");
 		
 		comboHealthy = new Combo(this, SWT.READ_ONLY);
-		comboHealthy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		GridData gd_comboHealthy = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_comboHealthy.widthHint = 100;
+		comboHealthy.setLayoutData(gd_comboHealthy);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		
 		Label label_8 = new Label(this, SWT.NONE);
 		label_8.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_8.setText("\u6587\u5316\u7A0B\u5EA6\uFF1A");
-		new Label(this, SWT.NONE);
 		
 		comboEducation = new Combo(this, SWT.READ_ONLY);
 		comboEducation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Label label_10 = new Label(this, SWT.NONE);
+		label_10.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_10.setText("\u624B\u673A\u53F7\u7801\uFF1A");
+		
+		textPhone = new Text(this, SWT.BORDER);
+		textPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		new Label(this, SWT.NONE);
+		
+		Label label_11 = new Label(this, SWT.NONE);
+		label_11.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_11.setText("\u8054\u7CFB\u7535\u8BDD\uFF1A");
+		
+		textTell = new Text(this, SWT.BORDER);
+		textTell.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Label label_12 = new Label(this, SWT.NONE);
+		label_12.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_12.setAlignment(SWT.RIGHT);
+		label_12.setText("\u90AE\u653F\u7F16\u7801\uFF1A");
+		
+		textPostcode = new Text(this, SWT.BORDER);
+		textPostcode.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Label label_14 = new Label(this, SWT.NONE);
+		label_14.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_14.setText("\u901A\u8BAF\u5730\u5740\uFF1A");
+		
+		textAddress = new Text(this, SWT.BORDER);
+		textAddress.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 4, 1));
+		
+		Label label_16 = new Label(this, SWT.NONE);
+		label_16.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_16.setText("*");
+		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		
 		Label label_9 = new Label(this, SWT.NONE);
 		label_9.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		label_9.setText("\u884C\u653F\u533A\u5212\uFF1A");
-		new Label(this, SWT.NONE);
 		
 		textRegional = new Text(this, SWT.BORDER | SWT.READ_ONLY);
 		textRegional.addKeyListener(new KeyAdapter() {
@@ -235,7 +264,7 @@ public class CustomerCmp extends Composite {
 				}
 			}
 		});
-		GridData gd_textRegional = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+		GridData gd_textRegional = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_textRegional.widthHint = 112;
 		textRegional.setLayoutData(gd_textRegional);
 		
@@ -251,55 +280,20 @@ public class CustomerCmp extends Composite {
 			}
 		});
 		btnOpenRegional.setText("...");
-		
-		Label label_10 = new Label(this, SWT.NONE);
-		label_10.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_10.setText("\u624B\u673A\uFF1A");
-		
-		textPhone = new Text(this, SWT.BORDER);
-		GridData gd_textPhone = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_textPhone.widthHint = 102;
-		textPhone.setLayoutData(gd_textPhone);
 		new Label(this, SWT.NONE);
 		
-		Label label_11 = new Label(this, SWT.NONE);
-		label_11.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_11.setText("\u7535\u8BDD\uFF1A");
+		Label label_18 = new Label(this, SWT.NONE);
+		label_18.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 4, 1));
+		label_18.setText("\u5B58\u6B3E\u3001\u6C47\u6B3E\u7B49\u91D1\u878D\u670D\u52A1\u662F\u5426\u4EE5\u6211\u884C\u4F4D\u4E3B\u8981\u884C\uFF1A");
 		
-		textTell = new Text(this, SWT.BORDER);
-		textTell.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		cbMainBank = new Combo(this, SWT.READ_ONLY);
+		cbMainBank.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		cbMainBank.select(0);
+		
+		Label lblNewLabel_3 = new Label(this, SWT.NONE);
+		lblNewLabel_3.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		lblNewLabel_3.setText("*");
 		new Label(this, SWT.NONE);
-		
-		Label label_12 = new Label(this, SWT.NONE);
-		label_12.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_12.setText("\u7535\u5B50\u90AE\u7BB1\uFF1A");
-		new Label(this, SWT.NONE);
-		
-		textEmail = new Text(this, SWT.BORDER);
-		textEmail.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		new Label(this, SWT.NONE);
-		
-		Label label_13 = new Label(this, SWT.NONE);
-		label_13.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_13.setText("\u90AE\u7F16\uFF1A");
-		new Label(this, SWT.NONE);
-		
-		textPostcode = new Text(this, SWT.BORDER);
-		textPostcode.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
-		
-		Label label_14 = new Label(this, SWT.NONE);
-		label_14.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_14.setText("\u5730\u5740\uFF1A");
-		
-		textAddress = new Text(this, SWT.BORDER);
-		textAddress.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 8, 1));
-		
-		Label label_16 = new Label(this, SWT.NONE);
-		label_16.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_16.setText("*");
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
@@ -307,9 +301,12 @@ public class CustomerCmp extends Composite {
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		
-		Label label_15 = new Label(this, SWT.NONE);
-		label_15.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		label_15.setText("\u5907\u6CE8\uFF1A");
+		Label label_15 = new Label(this, SWT.WRAP);
+		label_15.setAlignment(SWT.CENTER);
+		GridData gd_label_15 = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		gd_label_15.widthHint = 62;
+		label_15.setLayoutData(gd_label_15);
+		label_15.setText("\u5176\u4ED6\u9700\u8981\u8BF4\u660E\u4E8B\u9879\uFF1A");
 		
 		textDesc = new Text(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		textDesc.addVerifyListener(new VerifyListener() {
@@ -322,9 +319,12 @@ public class CustomerCmp extends Composite {
 				}
 			}
 		});
-		GridData gd_textDesc = new GridData(SWT.FILL, SWT.CENTER, false, false, 7, 1);
+		GridData gd_textDesc = new GridData(SWT.FILL, SWT.CENTER, false, false, 9, 1);
 		gd_textDesc.heightHint = 43;
 		textDesc.setLayoutData(gd_textDesc);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
 
 		initInput();
 	}
@@ -515,7 +515,7 @@ public class CustomerCmp extends Composite {
 			customer.setEducation(null);
 		}
 		
-		customer.setEmail(textEmail.getText());
+//		customer.setEmail(textEmail.getText());
 		customer.setGender(comboGender.getText());
 		if(comboHealthy.getSelectionIndex() > 0){
 			customer.setHealthy(comboHealthy.getText());
@@ -588,11 +588,11 @@ public class CustomerCmp extends Composite {
 		}else{
 			textTell.setText("");
 		}
-		if(!Util.isEmpty(customer.getEmail())){
-			textEmail.setText(customer.getEmail());
-		}else{
-			textEmail.setText("");
-		}
+//		if(!Util.isEmpty(customer.getEmail())){
+//			textEmail.setText(customer.getEmail());
+//		}else{
+//			textEmail.setText("");
+//		}
 		if(!Util.isEmpty(customer.getPostCode())){
 			textPostcode.setText(customer.getPostCode());
 		}else{
@@ -675,7 +675,7 @@ public class CustomerCmp extends Composite {
 		textAge.setText("");
 		textPhone.setText("");
 		textTell.setText("");
-		textEmail.setText("");
+//		textEmail.setText("");
 		textPostcode.setText("");
 		textAddress.setText("");
 		textDesc.setText("");

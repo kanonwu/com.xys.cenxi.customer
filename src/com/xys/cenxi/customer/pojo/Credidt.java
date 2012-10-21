@@ -35,6 +35,16 @@ public class Credidt implements Serializable {
 	private String publicGood;
 	
 	/**
+	 * 下一年计划贷款额度
+	 */
+	private Float nextYearLoadAmount;
+	
+	/**
+	 * 下2年计划贷款额度
+	 */
+	private Float nextTowYearLoadAmount;
+	
+	/**
 	 * 商业保险
 	 */
 	private String businessInsurance;
@@ -166,6 +176,22 @@ public class Credidt implements Serializable {
 
 	public void setCmCount(Integer cmCount) {
 		this.cmCount = cmCount;
+	}
+
+	public Float getNextYearLoadAmount() {
+		return nextYearLoadAmount;
+	}
+
+	public void setNextYearLoadAmount(Float nextYearLoadAmount) {
+		this.nextYearLoadAmount = nextYearLoadAmount;
+	}
+
+	public Float getNextTowYearLoadAmount() {
+		return nextTowYearLoadAmount;
+	}
+
+	public void setNextTowYearLoadAmount(Float nextTowYearLoadAmount) {
+		this.nextTowYearLoadAmount = nextTowYearLoadAmount;
 	}
 	
 	

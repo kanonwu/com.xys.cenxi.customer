@@ -13,6 +13,7 @@ import com.xys.cenxi.customer.data.CredidtService;
 import com.xys.cenxi.customer.pojo.Credidt;
 import com.xys.cenxi.customer.pojo.Customer;
 import com.xys.cenxi.customer.pojo.DebitCnd;
+import com.xys.cenxi.customer.pojo.PingYiResult;
 import com.xys.cenxi.customer.util.UIUtil;
 
 public class CredidiMgrCmp extends Composite {
@@ -59,6 +60,7 @@ public class CredidiMgrCmp extends Composite {
 		
 		Credidt cre = credidtInfoCmp.getCredidt();
 		DebitCnd debit = credidtInfoCmp.getDebitCnd();
+		PingYiResult pyr = credidtInfoCmp.getPingYiResult();
 		if(cre.getRowID() == null){
 			//新增
 			CredidtService.getInstance().add(cre);
@@ -70,6 +72,10 @@ public class CredidiMgrCmp extends Composite {
 			CredidtService.getInstance().add(debit);
 		}else{
 			CredidtService.getInstance().update(debit);
+		}
+		
+		if(pyr != null){
+			CredidtService.getInstance().add(pyr);
 		}
 		
 		UIUtil.showMessage("保存完成。");

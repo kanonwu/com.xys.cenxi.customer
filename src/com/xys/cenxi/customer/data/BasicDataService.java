@@ -8,7 +8,7 @@ public class BasicDataService {
 	
 	private static final BasicData[] jobs = new BasicData[10];
 	
-	private static final BasicData[] banks = new BasicData[8];
+	private static final BasicData[] banks = new BasicData[4];
 	
 	private static final BasicData[] goodNomalBad = new BasicData[3];
 	
@@ -19,6 +19,8 @@ public class BasicDataService {
 	private static final String checkChar = "☑";
 	
 	private static final String unCheckChar = "□";
+	
+	private static BasicData[] genders = new BasicData[2];
 	
 	
 	private BasicDataService(){
@@ -33,14 +35,10 @@ public class BasicDataService {
 		jobs[8] = new BasicData("8", "未知");
 		jobs[9] = new BasicData("9", "其他");
 		
-		banks[0] = new BasicData("0", "农村合作银行");
-		banks[1] = new BasicData("1", "农业银行");
-		banks[2] = new BasicData("2", "邮政银行");
-		banks[3] = new BasicData("3", "工商银行");
-		banks[4] = new BasicData("4", "建设银行");
-		banks[5] = new BasicData("5", "交通银行");
-		banks[6] = new BasicData("6", "中国银行");
-		banks[7] = new BasicData("7", "其他");
+		banks[0] = new BasicData("0", "全部是");
+		banks[1] = new BasicData("1", "基本是");
+		banks[2] = new BasicData("2", "很少");
+		banks[3] = new BasicData("3", "不是");
 		
 		goodNomalBad[0] = new BasicData("0", "好");
 		goodNomalBad[1] = new BasicData("1", "一般");
@@ -48,6 +46,40 @@ public class BasicDataService {
 		
 		yesNo[0] = new BasicData("0", "是");
 		yesNo[1] = new BasicData("1", "否");
+		
+		genders[0] = new BasicData("1", "男");
+		genders[0] = new BasicData("0", "女");
+		
+	}
+	
+	public BasicData[] getGenders(){
+		return genders;
+	}
+	
+	private BasicData getBasicDataByCode(BasicData[] data, String code){
+		for(BasicData bd : data){
+			if(bd.getCode().equals(code)){
+				return bd;
+			}
+		}
+		return null;
+	}
+
+	private BasicData getBasicDataByName(BasicData[] data, String name){
+		for(BasicData bd : data){
+			if(bd.getName().equals(name)){
+				return bd;
+			}
+		}
+		return null;
+	}
+	
+	public BasicData getGenderByCode(String code){
+		return getBasicDataByCode(genders, code);
+	}
+	
+	public BasicData getGenderByName(String name){
+		return getBasicDataByName(genders, name);
 	}
 	
 	public static BasicDataService getInstant(){

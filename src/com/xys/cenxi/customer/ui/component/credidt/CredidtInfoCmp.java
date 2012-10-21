@@ -1,5 +1,7 @@
 package com.xys.cenxi.customer.ui.component.credidt;
 
+import java.util.Date;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
@@ -16,7 +18,11 @@ import com.xys.cenxi.customer.data.CredidtService;
 import com.xys.cenxi.customer.pojo.Credidt;
 import com.xys.cenxi.customer.pojo.Customer;
 import com.xys.cenxi.customer.pojo.DebitCnd;
+import com.xys.cenxi.customer.pojo.PingYiResult;
 import com.xys.cenxi.customer.util.Util;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class CredidtInfoCmp extends Composite {
 	private Text textBank;
@@ -74,7 +80,7 @@ public class CredidtInfoCmp extends Composite {
 		Group group_1 = new Group(composite, SWT.NONE);
 		group_1.setLayout(new GridLayout(4, false));
 		GridData gd_group_1 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_group_1.heightHint = 37;
+		gd_group_1.heightHint = 84;
 		group_1.setLayoutData(gd_group_1);
 		group_1.setText("\u4E24\u5E74\u5185\u8D37\u6B3E\u9700\u6C42\u8BA1\u5212");
 		
@@ -101,6 +107,32 @@ public class CredidtInfoCmp extends Composite {
 		GridData gd_textLoadAmount = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_textLoadAmount.widthHint = 92;
 		textLoadAmount.setLayoutData(gd_textLoadAmount);
+		
+		Label label_13 = new Label(group_1, SWT.NONE);
+		label_13.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_13.setText("2013\u5E74\u8BA1\u5212\u501F\u6B3E\uFF1A");
+		
+		textNextYearLoad = new Text(group_1, SWT.BORDER);
+		textNextYearLoad.addVerifyListener(new VerifyListener() {
+			public void verifyText(VerifyEvent e) {
+				//校验
+				Util.verifyMoney(e, textNextYearLoad.getText());
+			}
+		});
+		textNextYearLoad.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		
+		Label label_14 = new Label(group_1, SWT.NONE);
+		label_14.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_14.setText("2014\u5E74\u8BA1\u5212\u501F\u6B3E\uFF1A");
+		
+		textNextTowYearLoad = new Text(group_1, SWT.BORDER);
+		textNextTowYearLoad.addVerifyListener(new VerifyListener() {
+			public void verifyText(VerifyEvent e) {
+				//校验
+				Util.verifyMoney(e, textNextTowYearLoad.getText());
+			}
+		});
+		textNextTowYearLoad.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		Group group_2 = new Group(composite, SWT.NONE);
 		group_2.setLayout(new GridLayout(10, false));
@@ -221,6 +253,47 @@ public class CredidtInfoCmp extends Composite {
 		new Label(group_2, SWT.NONE);
 		new Label(group_2, SWT.NONE);
 		new Label(group_2, SWT.NONE);
+		
+		Group group_3 = new Group(composite, SWT.NONE);
+		group_3.setLayout(new GridLayout(4, false));
+		GridData gd_group_3 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_group_3.heightHint = 63;
+		group_3.setLayoutData(gd_group_3);
+		group_3.setText("\u8D44\u4FE1\u8BC4\u8BAE\u5C0F\u7EC4\u610F\u89C1");
+		
+		Label label_17 = new Label(group_3, SWT.NONE);
+		label_17.setText("\u8D44\u4FE1\u8BC4\u8BAE\u5C0F\u7EC4\u610F\u89C1\uFF1A");
+		
+		Label label_15 = new Label(group_3, SWT.NONE);
+		label_15.setBounds(0, 0, 61, 17);
+		label_15.setText("\u662F\u5426\u901A\u8FC7\u521D\u5BA1\uFF0C\u7B26\u5408\u7B49\u7EA7\u8BC4\u5B9A\u8D44\u683C\uFF1A");
+		
+		checkYes = new Button(group_3, SWT.CHECK);
+		checkYes.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				checkNo.setSelection(false);
+			}
+		});
+		checkYes.setText("\u662F");
+		
+		checkNo = new Button(group_3, SWT.CHECK);
+		checkNo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				checkYes.setSelection(false);
+			}
+		});
+		checkNo.setText("\u5426");
+		
+		Label label_16 = new Label(group_3, SWT.NONE);
+		label_16.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_16.setText("\u8BC4\u8BAE\u5C0F\u7EC4\u6210\u5458\u7B7E\u540D\uFF1A");
+		
+		textPingYiNames = new Text(group_3, SWT.BORDER);
+		GridData gd_textPingYiNames = new GridData(SWT.FILL, SWT.CENTER, false, false, 3, 1);
+		gd_textPingYiNames.widthHint = 393;
+		textPingYiNames.setLayoutData(gd_textPingYiNames);
 
 	}
 
@@ -239,6 +312,13 @@ public class CredidtInfoCmp extends Composite {
 	private Combo cbCooperativeMedical;
 	
 	private DebitCnd debit;
+	private Text textNextYearLoad;
+	private Text textNextTowYearLoad;
+	private Text textPingYiNames;
+	
+	private PingYiResult  pingYiResult;
+	private Button checkNo;
+	private Button checkYes;
 	
 	public Credidt getCredidt(){
 		if(credidt == null){
@@ -257,6 +337,18 @@ public class CredidtInfoCmp extends Composite {
 			credidt.setLoadAmount(Float.valueOf(textLoadAmount.getText()));
 		}else{
 			credidt.setLoadAmount(null);
+		}
+		
+		if(!Util.isEmpty(textNextYearLoad.getText())){
+			credidt.setNextYearLoadAmount(Float.valueOf(textNextYearLoad.getText()));
+		}else{
+			credidt.setNextYearLoadAmount(null);
+		}
+		
+		if(!Util.isEmpty(textNextTowYearLoad.getText())){
+			credidt.setNextTowYearLoadAmount(Float.valueOf(textNextTowYearLoad.getText()));
+		}else{
+			credidt.setNextTowYearLoadAmount(null);
 		}
 		
 		//其他重要信息
@@ -283,6 +375,31 @@ public class CredidtInfoCmp extends Composite {
 		}
 		
 		return credidt;
+	}
+	
+	public PingYiResult getPingYiResult(){
+		if(this.customer == null)
+			return null;
+		
+		if(this.pingYiResult == null){
+			this.pingYiResult = new PingYiResult();
+			pingYiResult.setOwnerID(this.customer.getRowID());
+		}
+		
+		if(checkYes.getSelection()){
+			pingYiResult.setPassResultCode("0");
+		}else if(checkNo.getSelection()){
+			pingYiResult.setPassResultCode("1");
+		}else{
+			pingYiResult.setPassResultCode(null);
+		}
+		
+		if(!Util.isEmpty(textPingYiNames.getText())){
+			pingYiResult.setTheNames(textPingYiNames.getText());
+		}
+		pingYiResult.setPingYiDate(new Date());
+		
+		return pingYiResult;
 	}
 	
 	public DebitCnd getDebitCnd(){
@@ -319,6 +436,28 @@ public class CredidtInfoCmp extends Composite {
 		textLoadBalance.setText(debit.getBalance() == null ? "" : Util.toPlainString(debit.getBalance()));
 	}
 	
+	private void setPingYiResult(PingYiResult pyr){
+		this.pingYiResult = pyr;
+		if(this.pingYiResult == null){
+			checkNo.setSelection(false);
+			checkYes.setSelection(false);
+			textPingYiNames.setText("");
+			return;
+		}
+		
+		if(pingYiResult.getPassResultCode().equals("0")){
+			checkYes.setSelection(true);
+		}else if(pingYiResult.getPassResultCode().equals("1")){
+			checkNo.setSelection(true);
+		}
+		
+		if(pingYiResult.getTheNames() != null){
+			textPingYiNames.setText(pingYiResult.getTheNames());
+		}else{
+			textPingYiNames.setText("");
+		}
+	}
+	
 	private void setCredidt(Credidt cre){
 		this.credidt = cre;
 		if(credidt == null){
@@ -328,6 +467,8 @@ public class CredidtInfoCmp extends Composite {
 		
 		textLoadFor.setText(cre.getLoadFor() == null ? "" : cre.getLoadFor());
 		textLoadAmount.setText(cre.getLoadAmount() == null ? "" : Util.toPlainString(cre.getLoadAmount()));
+		textNextYearLoad.setText(cre.getNextYearLoadAmount() ==  null ? "" : Util.toPlainString(cre.getNextYearLoadAmount()));
+		textNextTowYearLoad.setText(cre.getNextTowYearLoadAmount() == null ? "" : Util.toPlainString(cre.getNextTowYearLoadAmount()));
 		textBIAmount.setText(cre.getBiAmount() == null ? "" : Util.toPlainString(cre.getBiAmount()));
 		textEICount.setText(cre.getEiCount() == null ? "" : cre.getEiCount().toString());
 		textCMCount.setText(cre.getCmCount() == null ? "" : cre.getCmCount().toString());
@@ -368,7 +509,9 @@ public class CredidtInfoCmp extends Composite {
 		
 		this.credidt = CredidtService.getInstance().getCredidt(customer.getRowID());
 		this.debit = CredidtService.getInstance().getDebitCnd(customer.getRowID());
+		this.pingYiResult = CredidtService.getInstance().getPingYiResult(customer.getRowID());
 		setDebitCnd(this.debit);
 		setCredidt(this.credidt);
+		setPingYiResult(this.pingYiResult);
 	}
 }
